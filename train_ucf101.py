@@ -13,7 +13,7 @@ from train_model import train_model
 from network.symbol_builder import get_symbol
 
 torch.backends.cudnn.enabled = False
-
+# 参数输入
 parser = argparse.ArgumentParser(description="PyTorch Video Classification Parser")
 # debug
 parser.add_argument('--debug-mode', type=bool, default=True,
@@ -34,8 +34,8 @@ parser.add_argument('--model-dir', type=str, default="./exps/models",
 parser.add_argument('--log-file', type=str, default="",
 					help="set logging file.")
 # device
-parser.add_argument('--gpus', type=str, default="0,1,2,3,4,5,6,7",
-					help="define gpu id")
+# parser.add_argument('--gpus', type=str, default="0,1,2,3,4,5,6,7",
+					# help="define gpu id")
 # algorithm
 parser.add_argument('--network', type=str, default='C2D_50_NL_TS_PRM_CG',
 					help="choose the base network")
@@ -74,7 +74,7 @@ parser.add_argument('--world-size', default=1, type=int,
 					help='number of distributed processes')
 parser.add_argument('--dist-url', default='tcp://192.168.0.11:23456', type=str,
 					help='url used to set up distributed training')
-
+# 参数自动输入
 def autofill(args):
 	# customized
 	if not args.task_name:
@@ -87,7 +87,7 @@ def autofill(args):
 	# fixed
 	args.model_prefix = os.path.join(args.model_dir, args.task_name)
 	return args
-
+# 记录文件创立
 def set_logger(log_file='', debug_mode=False):
 	if log_file:
 		if not os.path.exists("./"+os.path.dirname(log_file)):
@@ -114,12 +114,12 @@ if __name__ == "__main__":
 				 json.dumps(vars(args), indent=4, sort_keys=True))
 
 	# set device states
-	os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus # before using torch
-	assert torch.cuda.is_available(), "CUDA is not available"
+	# os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus # before using torch
+	# assert torch.cuda.is_available(), "CUDA is not available"
 	torch.manual_seed(args.random_seed)
-	torch.cuda.manual_seed(args.random_seed)
+	# torch.cuda.manual_seed(args.random_seed)
 
-	# distributed training
+	# distributed training # 多机训练才需要，默认是没用的
 	args.distributed = args.world_size > 1
 	if args.distributed:
 		import re, socket
@@ -129,16 +129,16 @@ if __name__ == "__main__":
 		dist.init_process_group(backend=args.backend, init_method=args.dist_url, rank=rank,
 								group_name=args.task_name, world_size=args.world_size)
 
-	# load dataset related configuration
+	# load dataset related configuration # 数据库导入
 	dataset_cfg = dataset.get_config(name=args.dataset)
 
-	# creat model with all parameters initialized
+	# creat model with all parameters initialized # 创建网络和整合网络参数
 	net, input_conf = get_symbol(name=args.network,
 					 pretrained=args.pretrained_2d if args.resume_epoch < 0 else None,
 					 print_net=True if args.distributed else False,
 					 **dataset_cfg)
 
-	# training
+	# training # 在这里开始训练
 	kwargs = {}
 	kwargs.update(dataset_cfg)
 	kwargs.update({'input_conf': input_conf})

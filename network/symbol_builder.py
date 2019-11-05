@@ -1,3 +1,4 @@
+# 将你的网络在这里进行import，从主程序输入的名称最好是全大写
 import logging
 
 from .c2dres50 import c2d50

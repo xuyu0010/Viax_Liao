@@ -20,7 +20,7 @@ def train_model(sym_net, model_prefix, dataset, input_conf,
                 pretrained_3d=None, fine_tune=False,
                 **kwargs):
 
-    assert torch.cuda.is_available(), "Currently, we only support CUDA version"
+    # assert torch.cuda.is_available(), "Currently, we only support CUDA version"
 
     # data iterator
     iter_seed = torch.initial_seed() \
@@ -36,13 +36,13 @@ def train_model(sym_net, model_prefix, dataset, input_conf,
                                                    seed=iter_seed)
     # wapper (dynamic model)
     net = model(net=sym_net,
-                criterion=torch.nn.CrossEntropyLoss().cuda(),
+                criterion=torch.nn.CrossEntropyLoss(), # .cuda(),
                 model_prefix=model_prefix,
                 step_callback_freq=50,
                 save_checkpoint_freq=save_frequency,
                 opt_batch_size=batch_size, # optional
                 )
-    net.net.cuda()
+    # net.net.cuda()
 
     # config optimization
     param_base_layers = []
@@ -63,10 +63,10 @@ def train_model(sym_net, model_prefix, dataset, input_conf,
         logging.info("Optimizer:: >> recuding the learning rate of {} params: {}".format(len(name_base_layers),
                      out if len(out) < 300 else out[0:150] + " ... " + out[-150:]))
 
-    if distributed:
-        net.net = torch.nn.parallel.DistributedDataParallel(net.net).cuda()
-    else:
-        net.net = torch.nn.DataParallel(net.net).cuda()
+    # if distributed:
+        # net.net = torch.nn.parallel.DistributedDataParallel(net.net).cuda()
+    # else:
+        # net.net = torch.nn.DataParallel(net.net).cuda()
 
     optimizer = torch.optim.SGD([{'params': param_base_layers, 'lr_mult': 0.2},
                                  {'params': param_new_layers, 'lr_mult': 1.0}],
