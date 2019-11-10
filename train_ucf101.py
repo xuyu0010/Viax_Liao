@@ -1,12 +1,15 @@
-import os
-import json
-import socket
-import logging
-import argparse
+import os    #os模块提供了多数操作系统的功能接口函数;
+import json	#JSON (JavaScript Object Notation) 是一种轻量级的数据交换格式。
+		#Python3 中可以使用 json 模块来对 JSON 数据进行编解码，
+			#它主要提供了四个方法： dumps、dump、loads、load。
+import socket	#套节字，信息交互
+import logging	#logging模块是Python内置的标准模块，主要用于输出运行日志，可以设置输出日志的等级、日志保存路径、日志文件回滚等；
+import argparse	#argparse是python标准库里面用来处理命令行参数的库
+			#命令行参数分为位置参数和选项参数：
 
-import torch
-import torch.nn.parallel
-import torch.distributed as dist
+import torch	# 包含了多维张量的数据结构以及基于其上的多种数学操作。
+import torch.nn.parallel	#并行计算
+import torch.distributed as dist	#分布式Pyrorch允许您在多台机器之间交换Tensors。使用此软件包，您可以通过多台机器和更大的小批量扩展网络训练。
 
 import dataset
 from train_model import train_model
