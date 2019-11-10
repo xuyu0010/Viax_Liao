@@ -13,12 +13,14 @@ import torch.distributed as dist	#分布式Pyrorch允许您在多台机器之间
 
 import dataset
 from train_model import train_model
-from network.symbol_builder import get_symbol
+from network.symbol_builder import get_symbol	#导入get_symbol函数
 
-torch.backends.cudnn.enabled = False
+torch.backends.cudnn.enabled = False	#禁用cudnn(cudnn使用非确定性算法)
 # 参数输入
 parser = argparse.ArgumentParser(description="PyTorch Video Classification Parser")
+	#创建一个解析对象
 # debug
+	#向该对象中添加你要关注的命令行参数和选项
 parser.add_argument('--debug-mode', type=bool, default=True,
 					help="print all setting for debugging.")
 # io
@@ -78,29 +80,33 @@ parser.add_argument('--world-size', default=1, type=int,
 parser.add_argument('--dist-url', default='tcp://192.168.0.11:23456', type=str,
 					help='url used to set up distributed training')
 # 参数自动输入
-def autofill(args):
+def autofill(args):		#args: 要解析的命令行参数列表。
 	# customized
-	if not args.task_name:
-		args.task_name = os.path.basename(os.getcwd())
-	if not args.log_file:
-		if os.path.exists("./exps/logs"):
+	if not args.task_name:	#task_name ?
+		args.task_name = os.path.basename(os.getcwd())	#os.getcwd()(get current work directory)，获取当前工作的目录
+								#os.path.basename(path)——返回文件名
+	if not args.log_file:	#log_file ?
+		if os.path.exists("./exps/logs"):		#os.path.exists(path)——检验指定的对象是否存在。是True,否则False
 			args.log_file = "./exps/logs/{}_at-{}.log".format(args.task_name, socket.gethostname())
-		else:
+		else:						#socket.gethostname()获取本机IP
+								#format格式化函数
 			args.log_file = ".{}_at-{}.log".format(args.task_name, socket.gethostname())
-	# fixed
-	args.model_prefix = os.path.join(args.model_dir, args.task_name)
+	# fixed 	model_prefix ?
+	args.model_prefix = os.path.join(args.model_dir, args.task_name)	# os.path.join(path, name)—连接目录和文件名
 	return args
 # 记录文件创立
 def set_logger(log_file='', debug_mode=False):
 	if log_file:
 		if not os.path.exists("./"+os.path.dirname(log_file)):
-			os.makedirs("./"+os.path.dirname(log_file))
+			os.makedirs("./"+os.path.dirname(log_file))	#os.mkdir(path)——创建path指定的目录，该参数不能省略。
+									#注意：这样只能建立一层，要想递归建立可用：os.makedirs()
 		handlers = [logging.FileHandler(log_file), logging.StreamHandler()]
-	else:
-		handlers = [logging.StreamHandler()]
+	else:			#FileHandler将日志写入到文件, StreamHandler将日志同时输出到屏幕
+		handlers = [logging.StreamHandler()]	#Handlers 处理程序将日志记录（由记录器创建）发送到适当的目标。
 
 	""" add '%(filename)s:%(lineno)d %(levelname)s:' to format show source file """
-	logging.basicConfig(level=logging.DEBUG if debug_mode else logging.INFO,
+			
+	logging.basicConfig(level=logging.DEBUG if debug_mode else logging.INFO,	#设置基础配置	
 				format='%(asctime)s: %(message)s',
 				datefmt='%Y-%m-%d %H:%M:%S',
 				handlers = handlers)
@@ -112,15 +118,15 @@ if __name__ == "__main__":
 	args = autofill(args)
 
 	set_logger(log_file=args.log_file, debug_mode=args.debug_mode)
-	logging.info("Using pytorch {} ({})".format(torch.__version__, torch.__path__))
+	logging.info("Using pytorch {} ({})".format(torch.__version__, torch.__path__))	#日志级别大小关系为：CRITICAL > ERROR > WARNING > INFO > DEBUG > NOTSET
 	logging.info("Start training with args:\n" +
-				 json.dumps(vars(args), indent=4, sort_keys=True))
+				 json.dumps(vars(args), indent=4, sort_keys=True))	#dumps对python对象进行序列化
 
 	# set device states
 	# os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus # before using torch
 	# assert torch.cuda.is_available(), "CUDA is not available"
-	torch.manual_seed(args.random_seed)
-	# torch.cuda.manual_seed(args.random_seed)
+	torch.manual_seed(args.random_seed)			#为CPU设置种子用于生成随机数，以使得结果是确定的
+	# torch.cuda.manual_seed(args.random_seed)		#为当前GPU设置随机种子；如果使用多个GPU，应该使用
 
 	# distributed training # 多机训练才需要，默认是没用的
 	args.distributed = args.world_size > 1
@@ -131,7 +137,8 @@ if __name__ == "__main__":
 					 rank, args.world_size, args.backend))
 		dist.init_process_group(backend=args.backend, init_method=args.dist_url, rank=rank,
 								group_name=args.task_name, world_size=args.world_size)
-
+			#初始化默认的分布式进程组，backend-后端使用；init_method指定如何初始化进程组的URL；world_size–参与作业的进程数；rank–当前流程的排名。
+		
 	# load dataset related configuration # 数据库导入
 	dataset_cfg = dataset.get_config(name=args.dataset)
 
@@ -147,3 +154,7 @@ if __name__ == "__main__":
 	kwargs.update({'input_conf': input_conf})
 	kwargs.update(vars(args))
 	train_model(sym_net=net, **kwargs)
+	
+	#如果我们不确定要往函数中传入多少个参数，或者我们想往函数中以列表和元组的形式传参数时，那就使要用*args；
+	#如果我们不知道要往函数中传入多少个关键词参数，或者想传入字典的值作为关键词参数时，那就要使用**kwargs。
+	
