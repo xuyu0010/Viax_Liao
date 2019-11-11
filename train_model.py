@@ -2,7 +2,7 @@ import os
 import logging
 
 import torch
-import torchvision
+import torchvision  #计算机视觉包
 import torch.backends.cudnn as cudnn
 import torch.distributed as dist
 
