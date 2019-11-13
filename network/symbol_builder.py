@@ -2,6 +2,7 @@
 import logging
 
 from .c2dres50 import c2d50
+from .mfnet_3d import MFNET_3D
 
 from .config import get_config
 
@@ -9,6 +10,8 @@ def get_symbol(name, print_net=False, **kwargs):
 
 	if name.upper() == "C2D_50":
 		net = c2d50(**kwargs)
+	if name.upper() == "MFNET_3D":
+		net = MFNET_3D(**kwargs)
 
 	else:
 		logging.error("network '{}'' not implemented".format(name))
