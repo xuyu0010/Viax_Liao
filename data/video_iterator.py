@@ -5,46 +5,50 @@ import os
 import cv2
 import numpy as np
 
-import torch.utils.data as data
+import torch.utils.data as data     #实现自由的数据读取
 import logging
 
 
 class Video(object):
     """basic Video class"""
 
-    def __init__(self, vid_path):
-        self.open(vid_path)
+    def __init__(self, vid_path):   #创建对象后，Python解释器默认调用__init__()方法。
+        self.open(vid_path)         #打开视频路径
 
-    def __del__(self):
+    def __del__(self):              # 当对象被删除时，会自动被调用
         self.close()
 
-    def __enter__(self):
+    #__enter__和__exit__方法，即支持上下文管理器协议。
+    #上下文管理器就是支持上下文管理器协议的对象，它是为了with而生。
+    #当with语句在开始运行时，会在上下文管理器对象上调用 __enter__ 方法。with语句运行结束后，会在上下文管理器对象上调用 __exit__ 方法    
+    def __enter__(self):            
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
         self.__del__()
 
-    def reset(self):
+    def reset(self):        #重置函数
         self.close()
         self.vid_path = None
-        self.frame_count = -1
-        self.faulty_frame = None
+        self.frame_count = -1   #self.frame_count帧数
+        self.faulty_frame = None    #有缺陷的帧
         return self
 
     def open(self, vid_path):
-        assert os.path.exists(vid_path), "VideoIter:: cannot locate: `{}'".format(vid_path)
+        assert os.path.exists(vid_path), "VideoIter:: cannot locate: `{}'".format(vid_path)     #判断
 
         # close previous video & reset variables
         self.reset()
 
         # try to open video
-        cap = cv2.VideoCapture(vid_path)
-        if cap.isOpened():
-            self.cap = cap
-            self.vid_path = vid_path
+        cap = cv2.VideoCapture(vid_path)    #VideoCapture()中参数是0，表示打开笔记本的内置摄像头，参数是视频文件路径则打开视频
+        if cap.isOpened():                  #摄像头是否处于打开状态可以通过isOpened()方法进行判断
+            self.cap = cap                  #self.cap摄像头
+            self.vid_path = vid_path        #视频路径
         else:
             raise IOError("VideoIter:: failed to open video: `{}'".format(vid_path))
-
+            #raise()异常处理函数；IOError输入/输出操作失败
+            
         return self
 
     def count_frames(self, check_validity=False):
