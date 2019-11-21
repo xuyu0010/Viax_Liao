@@ -5,28 +5,29 @@ Author: Yunpeng Chen
 """
 import logging
 
-class Callback(object):
+class Callback(object):     #回调函数，指的是通过函数参数传递到其他代码的，某一块可用执行代码的应用。
 
     def __init__(self, with_header=False):
         self.with_header = with_header
 
     def __call__(self):
-        raise NotImplementedError("To be implemented")
-
+        raise NotImplementedError("To be implemented")  #使用 raise 语句抛出一个指定的异常
+                                                        #NotImplementedError	尚未实现的方法
+        
     def header(self, epoch=None, batch=None):
         str_out = ""
         if self.with_header:
             if epoch is not None:
-                str_out += "Epoch {:s} ".format(("[%d]"%epoch).ljust(5, ' '))
+                str_out += "Epoch {:s} ".format(("[%d]"%epoch).ljust(5, ' '))   #ljust() 方法返回一个原字符串左对齐,并使用空格填充至指定长度的新字符串。
             if batch is not None:
                 str_out += "Batch {:s} ".format(("[%d]"%batch).ljust(6, ' '))
         return str_out
  
-class CallbackList(Callback):
+class CallbackList(Callback):       #回调函数列表，继承callback类
 
     def __init__(self, *args, with_header=True):
-        super(CallbackList, self).__init__(with_header=with_header)
-        assert all([issubclass(type(x), Callback) for x in args]), \
+        super(CallbackList, self).__init__(with_header=with_header) #super（）用于调用父类
+        assert all([issubclass(type(x), Callback) for x in args]), \   #issubclass（）用于判断参数class是否是类型参数classinfo的子类
                 "Callback inputs illegal: {}".format(args)
         self.callbacks = [callback for callback in args]
 
@@ -34,7 +35,7 @@ class CallbackList(Callback):
         str_out = self.header(epoch, batch)
 
         for callback in self.callbacks:
-            str_out += callback(**kwargs, silent=True) + " "
+            str_out += callback(**kwargs, silent=True) + " "          #？？？？
 
         if not silent:
             logging.info(str_out)
@@ -45,7 +46,7 @@ class CallbackList(Callback):
 # CUSTOMIZED CALLBACKS
 ####################
 
-class SpeedMonitor(Callback):
+class SpeedMonitor(Callback):               #速度浮窗
 
     def __init__(self, with_header=False):
         super(SpeedMonitor, self).__init__(with_header=with_header)
@@ -53,7 +54,7 @@ class SpeedMonitor(Callback):
     def __call__(self, sample_elapse, update_elapse=None, epoch=None, batch=None, silent=False, **kwargs): 
         str_out = self.header(epoch, batch)
 
-        if sample_elapse is not None:
+        if sample_elapse is not None:     
             sample_freq = 1./sample_elapse
             if update_elapse is not None:
                 update_freq = 1./update_elapse
