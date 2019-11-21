@@ -75,7 +75,7 @@ if __name__ == "__main__":      #__name__ 是当前模块名
 
     random_sampler = RandomSampling(num=8, interval=2, speed=[0.5, 2])
 
-    logging.info("RandomSampling(): range_max < num")
+    logging.info("RandomSampling(): range_max < num")           #这几句话的意思？range_max不同
     for i in range(10):
         logging.info("{:d}: {}".format(i, random_sampler.sampling(range_max=2, v_id=1)))
 
@@ -93,7 +93,7 @@ if __name__ == "__main__":      #__name__ 是当前模块名
 
     logging.info("SequentialSampling():")
     for i in range(10):
-        logging.info("{:d}: v_id = {}: {}".format(i, 0, list(sequential_sampler.sampling(range_max=14, v_id=0))))
+        logging.info("{:d}: v_id = {}: {}".format(i, 0, list(sequential_sampler.sampling(range_max=14, v_id=0))))       #这句话的意思？
         # logging.info("{:d}: v_id = {}: {}".format(i, 1, sequential_sampler.sampling(range_max=9, v_id=1)))
         # logging.info("{:d}: v_id = {}: {}".format(i, 2, sequential_sampler.sampling(range_max=2, v_id=2)))
         # logging.info("{:d}: v_id = {}: {}".format(i, 3, sequential_sampler.sampling(range_max=3, v_id=3)))
