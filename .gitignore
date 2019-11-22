@@ -113,3 +113,4 @@ venv.bak/
 
 # links in raw folders
 raw/
+dataset/HMDB51/raw/data
