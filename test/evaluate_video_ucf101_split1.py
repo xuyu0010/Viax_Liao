@@ -203,6 +203,7 @@ if __name__ == '__main__':
     for _, video_info in avg_score.items():
         target, loss, pred, _ = video_info
         metrics.update([pred], target, [loss])
+        
 
     logging.info("Total time cost: {:.1f} sec".format(sum_batch_elapse))
     logging.info("Speed: {:.4f} samples/sec".format(
