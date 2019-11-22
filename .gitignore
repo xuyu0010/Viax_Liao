@@ -110,3 +110,6 @@ venv.bak/
 *.mp4
 .mpeg4
 *.mpeg4
+
+# links in raw folders
+raw/
