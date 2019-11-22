@@ -68,6 +68,8 @@ def train_model(sym_net, model_prefix, dataset, input_conf,
     # else:
         # net.net = torch.nn.DataParallel(net.net).cuda()
 
+    net.net = torch.nn.DataParallel(net.net) # comment out if have GPU
+
     optimizer = torch.optim.SGD([{'params': param_base_layers, 'lr_mult': 0.2},
                                  {'params': param_new_layers, 'lr_mult': 1.0}],
                                 lr=lr_base,
