@@ -13,7 +13,7 @@ except:
 	import initializer
 
 
-class BottleneckC2D(nn.Module):
+class BottleneckC2D(nn.Module):		#瓶颈层，一般在深度较高的网络中使用
 	expansion = 4
 
 	def __init__(self, inplanes, planes, stride=1, downsample=None):
@@ -72,9 +72,9 @@ class C2D(nn.Module):
 
 		for name, m in self.named_modules():
 			if isinstance(m, nn.Conv2d):
-				nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')
+				nn.init.kaiming_normal_(m.weight, mode='fan_out', nonlinearity='relu')	#权重初始化
 			elif isinstance(m, nn.BatchNorm2d):
-				nn.init.constant_(m.weight, 1)
+				nn.init.constant_(m.weight, 1)	#nn.init.constant_(tensor, val)使用参数val的值填满输入tensor
 				nn.init.constant_(m.bias, 0)
 
 	def _make_layer(self, block, planes, blocks, stride=1):
