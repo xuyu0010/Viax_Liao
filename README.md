@@ -59,5 +59,6 @@ HMDB51 Dataset:
 ### 数据库下载链接如下（可在中国大陆使用）
 - UCF101：https://entuedu-my.sharepoint.com/:u:/g/personal/xuyu0014_e_ntu_edu_sg/EaDYMqmoSPNHqM3sVyEH4jkBvPJP6fGDYBTX6n2vB0-jXA?e=I3OxfT
 - HMDB51：https://entuedu-my.sharepoint.com/:u:/g/personal/xuyu0014_e_ntu_edu_sg/ETkMjaDh3DdCjaJ-PfX5tW8B043TZH26aeheP4laCr1bDQ?e=rKN1BC
+- pretrained for MFNET: https://entuedu-my.sharepoint.com/:u:/g/personal/xuyu0014_e_ntu_edu_sg/EcbSBlB7PD5Bp_zPTuU84eQBwTFDX2HPdqjoCQ4dZn6Ajw?e=rgEbp2
 
 #### 若有其他问题请及时通过邮件或者班主任与我联系
