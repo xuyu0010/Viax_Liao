@@ -5,7 +5,7 @@ Author: Yunpeng Chen
 """
 import logging
 
-class LRScheduler(object):
+class LRScheduler(object):          #LRScheduler学习率调度程序的基类。
 
     def __init__(self, step_counter=0, base_lr=0.01):
         self.step_counter = step_counter
@@ -17,6 +17,7 @@ class LRScheduler(object):
     def get_lr(self):
         return self.lr
 
+# FactorScheduler每n个步骤将学习率降低一个因子。 MultiFactorScheduler通过提供步骤列表来降低学习率。
 class MultiFactorScheduler(LRScheduler):
 
     def __init__(self, steps, base_lr=0.01, factor=0.1, step_counter=0):
