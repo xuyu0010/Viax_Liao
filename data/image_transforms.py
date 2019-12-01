@@ -103,7 +103,7 @@ class RandomScale(Transform):   #随机标度                        ？RandomSc
                        aspect_ratio=[1.0, 1.0],             #aspect_ratio纵横比
                        slen=[224, 288],                #？
                        interpolation=cv2.INTER_LINEAR):     #插值
-        assert slen[1] >= slen[0], \                        #判断
+        assert slen[1] >= slen[0], \                        
                 "slen ({}) should be in increase order".format(scale)
         assert aspect_ratio[1] >= aspect_ratio[0], \
                 "aspect_ratio ({}) should be in increase order".format(aspect_ratio)
