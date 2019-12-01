@@ -4,14 +4,14 @@ Author: Yunpeng Chen  RandomRGB
 import torch
 import numpy as np
 
-from .image_transforms import Compose, \            # 构成
-                              Transform, \          #格式转换
-                              Normalize, \          #归一化
-                              Resize, \             #调整大小
-                              RandomScale, \        #随机标度
-                              CenterCrop, \         #适度裁剪
-                              RandomCrop, \         #随机切割
-                              RandomHorizontalFlip, \ #随机水平翻转
+from .image_transforms import Compose, \           
+                              Transform, \          
+                              Normalize, \          
+                              Resize, \             
+                              RandomScale, \        
+                              CenterCrop, \         
+                              RandomCrop, \         
+                              RandomHorizontalFlip, \ 
                               RandomRGB, \
                               RandomHLS
 
