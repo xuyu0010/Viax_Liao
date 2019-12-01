@@ -4,7 +4,7 @@ Author: Yunpeng Chen  RandomRGB
 import torch
 import numpy as np
 
-from .image_transforms import Compose, \           
+from .image_transforms import Compose, \ 
                               Transform, \          
                               Normalize, \          
                               Resize, \             
