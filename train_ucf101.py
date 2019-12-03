@@ -51,7 +51,9 @@ parser.add_argument('--network', type=str, default='MFNET_3D',
 # - step 4: resume if `resume_epoch' >= 0
 parser.add_argument('--pretrained_2d', type=bool, default=True,
 					help="load default 2D pretrained model.")
-parser.add_argument('--pretrained_3d', type=str, default=None,
+parser.add_argument('--pretrained_3d', type=str, 
+		    			# default=None,
+		    			default='./network/pretrained/MFNet3D_Kinetics-400_72.8.pth'
 					help="load default 3D pretrained model.")
 parser.add_argument('--resume-epoch', type=int, default=-1,
 					help="resume train")
