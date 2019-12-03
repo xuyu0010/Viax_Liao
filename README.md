@@ -1,6 +1,6 @@
-# General FYP Action Recognition Framework
+# General Action Recognition Framework for Viax
 
-This repository is the framework for Action Recognition for FYP 2020.
+This repository is the framework for Action Recognition for Viax Project.
 
 ## Implementation
 
