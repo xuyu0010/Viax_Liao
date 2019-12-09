@@ -14,7 +14,7 @@ from . import callback
 """
 Static Model
 """
-class static_model(object):
+class static_model(object):     #静态模型
 
     def __init__(self,
                  net,
@@ -31,30 +31,19 @@ class static_model(object):
 
     def load_state(self, state_dict, strict=False):
         if strict:
-            self.net.load_state_dict(state_dict=state_dict)
+            self.net.load_state_dict(state_dict=state_dict)     #重新加载这个模型。
         else:
             # customized partialy load function
             net_state_keys = list(self.net.state_dict().keys())
-            for name, param in state_dict.items():
-                name_pretrained = name[7:]
-                # if name in self.net.state_dict().keys():
-                if name_pretrained in self.net.state_dict().keys():
-                    # dst_param_shape = self.net.state_dict()[name].shape
-                    dst_param_shape = self.net.state_dict()[name_pretrained].shape
+            for name, param in state_dict.items():  #state_dict只包含卷积层和全连接层的参数
+                if name in self.net.state_dict().keys():
+                    dst_param_shape = self.net.state_dict()[name].shape
                     if param.shape == dst_param_shape:
-                        # self.net.state_dict()[name].copy_(param.view(dst_param_shape))
-                        self.net.state_dict()[name_pretrained].copy_(param.view(dst_param_shape))
-                        # net_state_keys.remove(name)
-                        net_state_keys.remove(name_pretrained)
+                        self.net.state_dict()[name].copy_(param.view(dst_param_shape))
+                        net_state_keys.remove(name)
             # indicating missed keys
             if net_state_keys:
-                num_batches_list = []
-                for i in range(len(net_state_keys)):
-                    if 'num_batches_tracked' in net_state_keys[i]:
-                        num_batches_list.append(net_state_keys[i])
-                pruned_additional_states = [x for x in net_state_keys if x not in num_batches_list]
-                logging.info("There are layers in current network not initialized by pretrained")
-                logging.warning(">> Failed to load: {}".format(pruned_additional_states))
+                logging.warning(">> Failed to load: {}".format(net_state_keys))
                 return False
         return True
 
@@ -92,11 +81,11 @@ class static_model(object):
     def save_checkpoint(self, epoch, optimizer_state=None):
 
         save_path = self.get_checkpoint_path(epoch)
-        save_folder = os.path.dirname(save_path)
+        save_folder = os.path.dirname(save_path)    #对路径字符串进行处理 返回所在文件夹的路径
 
         if not os.path.exists(save_folder):
             logging.debug("mkdir {}".format(save_folder))
-            os.makedirs(save_folder)
+            os.makedirs(save_folder)        #os.makedirs() 方法用于递归创建目录。
 
         if not optimizer_state:
             torch.save({'epoch': epoch,
@@ -111,18 +100,17 @@ class static_model(object):
             logging.info("Checkpoint (model & optimizer) saved to: {}".format(save_path))
 
 
-    def forward(self, data, target):
+    def forward(self, data, target):        #正向函数，单输出单损失
         """ typical forward function with:
             single output and single loss
         """
         # data = data.float().cuda(async=True)
         # target = target.cuda(async=True)
-        # data = data.float().cuda()
-        # target = target.cuda()
-        data = data.float()
+        data = data.float() # .cuda()
+        target = target # .cuda()
         if self.net.training:
             torch.set_grad_enabled(True) # for pytorch040 version
-            input_var = torch.autograd.Variable(data, requires_grad=False)
+            input_var = torch.autograd.Variable(data, requires_grad=False)  #autograd 用于跟踪历史记录
             target_var = torch.autograd.Variable(target, requires_grad=False)
         else:
             # input_var = torch.autograd.Variable(data, volatile=True)
@@ -132,7 +120,7 @@ class static_model(object):
                 target_var = torch.autograd.Variable(target)
 
         output = self.net(input_var)
-        if hasattr(self, 'criterion') and self.criterion is not None \
+        if hasattr(self, 'criterion') and self.criterion is not None \      #hasattr() 函数用于判断对象是否包含对应的属性。
             and target is not None:
             loss = self.criterion(output, target_var)
         else:
@@ -355,8 +343,6 @@ class model(static_model):
                     current_best = top1_eval
                     top1_epoch = i_epoch + 1
                     logging.info('Current best epoch found with top1 accuracy {:.5f} at epoch {:d}, saved'.format(current_best, top1_epoch))
-                elif (top1_eval > 0.71):
-                    self.save_checkpoint(epoch=i_epoch+1, optimizer_state=self.callback_kwargs['optimizer_dict'])
 
                 torch.set_grad_enabled(True) # for pytorch040 version
 

@@ -13,8 +13,7 @@ def get_hmdb51(data_root='./dataset/HMDB51',
                val_interval=2,              #区间值
                mean=[0.485, 0.456, 0.406],  #均值
                std=[0.229, 0.224, 0.225],   #标准差
-               seed=0,
-               #seed=torch.distributed.get_rank() if torch.distributed.is_initialized() else 0,  #get_rank()返回当前进程组的排名
+               seed=torch.distributed.get_rank() if torch.distributed.is_initialized() else 0,  #get_rank()返回当前进程组的排名
                **kwargs):                                                                       #is_initialized()检查是否已初始化默认进程组
     """ data iter for ucf-101
     """
@@ -68,14 +67,13 @@ def get_hmdb51(data_root='./dataset/HMDB51',
 
     return (train, val)
 
-def get_ucf101(data_root='./dataset/UCF101',
+def get_ucf101(data_root='.\\dataset\\UCF101',
                clip_length=8,
                train_interval=2,
                val_interval=2,
                mean=[0.485, 0.456, 0.406],
                std=[0.229, 0.224, 0.225],
-               seed=0,
-               #seed=torch.distributed.get_rank() if torch.distributed.is_initialized() else 0,
+               seed=torch.distributed.get_rank() if torch.distributed.is_initialized() else 0,
                **kwargs):
     """ data iter for ucf-101
     """
@@ -127,7 +125,6 @@ def get_ucf101(data_root='./dataset/UCF101',
                       name='test',
                       )
 
-    print(len(val))
     return (train, val)
 
 
@@ -137,8 +134,7 @@ def get_kinetics(data_root='./dataset/Kinetics',
                  val_interval=2,
                  mean=[0.485, 0.456, 0.406],
                  std=[0.229, 0.224, 0.225],
-                 seed=0,
-                 #seed=torch.distributed.get_rank() if torch.distributed.is_initialized() else 0,
+                 seed=torch.distributed.get_rank() if torch.distributed.is_initialized() else 0,
                  **kwargs):
     """ data iter for kinetics
     """
@@ -199,8 +195,7 @@ def get_aid11(data_root='./dataset/AID11',
                val_interval=2,
                mean=[0.485, 0.456, 0.406],
                std=[0.229, 0.224, 0.225],
-               seed=0,
-               #seed=torch.distributed.get_rank() if torch.distributed.is_initialized() else 0,
+               seed=torch.distributed.get_rank() if torch.distributed.is_initialized() else 0,
                **kwargs):
     """ data iter for ucf-101
     """
@@ -271,9 +266,7 @@ def creat(name, batch_size, num_workers=16, **kwargs):
         num_workers=num_workers, pin_memory=False)
 
     val_loader = torch.utils.data.DataLoader(val,
-        batch_size=8,
-        #batch_size=2*torch.cuda.device_count(), 
-        shuffle=False,    #2*？
+        batch_size=2*torch.cuda.device_count(), shuffle=False,    #2*？
         num_workers=num_workers, pin_memory=False)
     # torch.utils.data.DataLoader该接口主要用来将自定义的数据读取接口的输出或者PyTorch已有的数据读取接口的输入按照batch size封装成Tensor，后续只需要再包装成Variable即可作为模型的输入
     #torch.cuda.device_count()返回可得到的GPU数量。

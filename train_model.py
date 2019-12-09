@@ -1,8 +1,8 @@
 import os
-import logging   
+import logging
 
 import torch
-import torchvision  #计算机视觉包
+import torchvision
 import torch.backends.cudnn as cudnn
 import torch.distributed as dist
 
@@ -36,7 +36,8 @@ def train_model(sym_net, model_prefix, dataset, input_conf,
                                                    seed=iter_seed)
     # wapper (dynamic model)
     net = model(net=sym_net,
-                criterion=torch.nn.CrossEntropyLoss(), # .cuda(),
+                # criterion=torch.nn.CrossEntropyLoss().cuda(),
+                criterion=torch.nn.CrossEntropyLoss(),
                 model_prefix=model_prefix,
                 step_callback_freq=50,
                 save_checkpoint_freq=save_frequency,
@@ -68,10 +69,8 @@ def train_model(sym_net, model_prefix, dataset, input_conf,
     # else:
         # net.net = torch.nn.DataParallel(net.net).cuda()
 
-    net.net = torch.nn.DataParallel(net.net) # comment out if have GPU
-
-    optimizer = torch.optim.SGD([{'params': param_base_layers, 'lr_mult': 0.2},
-                                 {'params': param_new_layers, 'lr_mult': 1.0}],
+    optimizer = torch.optim.SGD([{'params': param_base_layers, 'lr_mult': 0.1},
+                                 {'params': param_new_layers, 'lr_mult': 0.5}],
                                 lr=lr_base,
                                 momentum=0.9,
                                 weight_decay=0.0001,
@@ -82,7 +81,7 @@ def train_model(sym_net, model_prefix, dataset, input_conf,
         if resume_epoch < 0:
             assert os.path.exists(pretrained_3d), "cannot locate: `{}'".format(pretrained_3d)
             logging.info("Initializer:: loading model states from: `{}'".format(pretrained_3d))
-            checkpoint = torch.load(pretrained_3d)
+            checkpoint = torch.load(pretrained_3d, map_location='cpu')
             net.load_state(checkpoint['state_dict'], strict=False)
         else:
             logging.info("Initializer:: skip loading model states from: `{}'"
@@ -98,7 +97,8 @@ def train_model(sym_net, model_prefix, dataset, input_conf,
         step_counter = epoch_start * train_iter.__len__()
 
     # set learning rate scheduler
-    num_worker = dist.get_world_size() if torch.distributed.is_initialized() else 1
+    # num_worker = dist.get_world_size() if torch.distributed.is_initialized() else 1
+    num_worker = 1
     lr_scheduler = MultiFactorScheduler(base_lr=lr_base,
                                         steps=[int(x/(batch_size*num_worker)) for x in lr_steps],
                                         factor=lr_factor,

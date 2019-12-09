@@ -6,7 +6,7 @@ def get_config(name, **kwargs):
 
     config = {}
 
-    if "3D" in name.upper():
+    if "MFNET" in name.upper():
         logging.info("Preprocessing:: using MXNet default mean & std.")
         config['mean'] = [124 / 255, 117 / 255, 104 / 255]
         config['std'] = [1 / (.0167 * 255)] * 3

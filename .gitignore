@@ -103,15 +103,12 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-# Video files
-.avi
-*.avi
-.mp4
-*.mp4
-.mpeg4
-*.mpeg4
+# pth save files
+*.pth
 
-# links in raw folders
-raw/
-dataset/HMDB51/raw/data
-dataset/HMDB51/raw/data
+# pretrained link
+*.Ink
+*.lnk
+
+# Video files
+*.avi
