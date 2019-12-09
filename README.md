@@ -54,7 +54,8 @@ HMDB51 Dataset:
 ## 额外中文说明
 
 - 若没有显卡进行训练，请使用CPU训练。目前网络已经修改为采用CPU训练，若有Bug请记录并及时通过邮件和班主任反馈给我。若能使用GPU也请尽早反馈。
-- 主程序中目前只有train_ucf101.py换成了CPU版本，若需要使用train_hmdb51.py（使用HMDB51数据集）请参照train_ucf101.py进行修改。
+- 首先保证所有的对文件的链接改为文件夹，将视频文件（每个类的文件应在不同文件夹）都放入对应的数据库/raw/data文件夹内。
+- 如果仍然遇到问题，可以尝试重装PyTorch。
 
 ### 数据库下载链接如下（可在中国大陆使用）
 - UCF101：https://entuedu-my.sharepoint.com/:u:/g/personal/xuyu0014_e_ntu_edu_sg/EaDYMqmoSPNHqM3sVyEH4jkBvPJP6fGDYBTX6n2vB0-jXA?e=I3OxfT
