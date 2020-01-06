@@ -306,7 +306,7 @@ def get_aid11(data_root='./dataset/AID11',
 	return (train, val)
 
 
-def creat(name, batch_size, num_workers=16, **kwargs):
+def creat(name, batch_size, num_workers=0, **kwargs):
 
 	if name.upper() == 'UCF101':
 		train, val = get_ucf101(**kwargs)
