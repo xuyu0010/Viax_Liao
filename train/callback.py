@@ -27,8 +27,8 @@ class CallbackList(Callback):       #回调函数列表，继承callback类
 
     def __init__(self, *args, with_header=True):
         super(CallbackList, self).__init__(with_header=with_header) #super（）用于调用父类
-        assert all([issubclass(type(x), Callback) for x in args]), \   #issubclass（）用于判断参数class是否是类型参数classinfo的子类
-                "Callback inputs illegal: {}".format(args)
+        assert all([issubclass(type(x), Callback) for x in args]), \
+                "Callback inputs illegal: {}".format(args)   #issubclass（）用于判断参数class是否是类型参数classinfo的子类
         self.callbacks = [callback for callback in args]
 
     def __call__(self, epoch=None, batch=None, silent=False, **kwargs):

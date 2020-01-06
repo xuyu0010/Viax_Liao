@@ -285,7 +285,7 @@ class VideoIter(data.Dataset):
                 v_id, label, video_subpath = line.split()
                 video_path = os.path.join(video_prefix, video_subpath)
                 if not os.path.exists(video_path):
-                    # logging.warning("VideoIter:: >> cannot locate `{}'".format(video_path))
+                    logging.warning("VideoIter:: >> cannot locate `{}'".format(video_path))
                     continue
                 if check_video:
                     if video_subpath in cached_video_info:

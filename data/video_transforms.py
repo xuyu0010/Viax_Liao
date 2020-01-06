@@ -5,13 +5,13 @@ import torch
 import numpy as np
 
 from .image_transforms import Compose, \
-                              Transform, \          
-                              Normalize, \          
-                              Resize, \             
-                              RandomScale, \        
-                              CenterCrop, \         
-                              RandomCrop, \         
-                              RandomHorizontalFlip, \ 
+                              Transform, \
+                              Normalize, \
+                              Resize, \
+                              RandomScale, \
+                              CenterCrop, \
+                              RandomCrop, \
+                              RandomHorizontalFlip, \
                               RandomRGB, \
                               RandomHLS
 
