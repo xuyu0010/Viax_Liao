@@ -185,4 +185,4 @@ if __name__ == "__main__":
 	data = torch.autograd.Variable(torch.randn(1,3,16,224,224))
 	output = net(data)
 	# torch.save({'state_dict': net.state_dict()}, './tmp.pth')
-	print (output.shape)
+	print (output.shape) # (1, 100(有多少个分类))
