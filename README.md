@@ -57,6 +57,14 @@ HMDB51 Dataset:
 - 首先保证所有的对文件的链接改为文件夹，将视频文件（每个类的文件应在不同文件夹）都放入对应的数据库/raw/data文件夹内。
 - 如果仍然遇到问题，可以尝试重装PyTorch。
 
+### 如何修改网络框架
+
+- 1. 保留原有骨架网络，新增一个网络py文件（比如：mfnet_change.py）注意文件名不要有空格，建议能体现修改的内容。
+- 2. 建议修改网络的class名（见mfnet_base.py第65行）（改称比如 class MFNET_CHANGE(nn.Module):）。这个改动要同时体现在__init__函数的super内和main函数中。
+- 3. 测试采用python 新文件名即可，main函数大致和mfnet_base.py的main函数一致，如果修改了网络名记得在main函数内做相应的修改。（如果碰到xxx is not defined很大可能就是你网络名没有修改）
+- 4. 在symbol_builder.py中新加一个from 新文件 import 新网络class，并参考13，14行做相应的增加（可以直接先复制黏贴然后修改网络名字就好）
+- 5. 在train_hmdb51.py中修改第38行 --network的参数为你修改过的新网络名
+
 ### 数据库下载链接如下（可在中国大陆使用）
 - UCF101：https://entuedu-my.sharepoint.com/:u:/g/personal/xuyu0014_e_ntu_edu_sg/EaDYMqmoSPNHqM3sVyEH4jkBvPJP6fGDYBTX6n2vB0-jXA?e=I3OxfT
 - HMDB51：https://entuedu-my.sharepoint.com/:u:/g/personal/xuyu0014_e_ntu_edu_sg/ETkMjaDh3DdCjaJ-PfX5tW8B043TZH26aeheP4laCr1bDQ?e=rKN1BC
