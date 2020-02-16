@@ -1,13 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sat Feb 15 20:14:56 2020
-
 @author: lcx98
 """
 
-"""
-Author: Yunpeng Chen
-"""
 import logging
 import os
 from collections import OrderedDict
@@ -116,9 +111,9 @@ class Motion_Exctractor_MEAN(nn.Module):
 #		print(h_min_mean.shape)
 		
 		
-#        a = h_max_mean / W
-#        b = h_max_mean % W
-#        c = h_min_mean / W
+#		a = h_max_mean / W
+#		b = h_max_mean % W
+#		c = h_min_mean / W
 #        d = h_min_mean % W
 #        print(a)
 #        print(a.shape)
