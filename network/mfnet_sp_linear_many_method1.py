@@ -270,7 +270,7 @@ class MFNET_SP_LINEAR_DUAL(nn.Module):
 		h = self.classifier(h)
 #		print(h.shape)
 
-		return h, motion_h
+		return h
 
 if __name__ == "__main__":
 	import torch
@@ -280,6 +280,6 @@ if __name__ == "__main__":
 	data = torch.autograd.Variable(torch.randn(5,3,16,224,224))
 	data = data#.cuda()
 	net = net#.cuda()
-	output, motion_h = net(data)
+	output = net(data)
 	# torch.save({'state_dict': net.state_dict()}, './tmp.pth')
 	print (output.shape)
