@@ -12,25 +12,20 @@ The inputs are substrated by mean RGB = [ 124, 117, 104 ], and then multiplied b
 
 ## Usage
 
-Train motion from scratch:
+Fine-tune with pre-trained model using the new network:
 ```
-python train_kinetics.py
-```
-
-Fine-tune with pre-trained model:
-```
-python train_ucf101.py
+python train_ucf101.py --network CHANGE_1 (or CHANGE_2)
 ```
 or 
 ```
-python train_hmdb51.py
+python train_hmdb51.py --network CHANGE_1 (or CHANGE_2)
 ```
 
 Evaluate the trained model:
 ```
 cd test
 # the default setting is to test trained model on ucf-101 (split1)
-python evaluate_video.py
+python evaluate_video.py --network CHANGE_1
 ```
 
 
