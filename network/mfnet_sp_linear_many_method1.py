@@ -111,30 +111,16 @@ class Motion_Exctractor_MEAN(nn.Module):
 #		print(h_min_mean.shape)
 		
 		
-#		a = h_max_mean / W
-#		b = h_max_mean % W
-#		c = h_min_mean / W
-#        d = h_min_mean % W
-#        print(a)
-#        print(a.shape)
-#        print(b)
-#        print(b.shape)
-#        print(c)
-#        print(c.shape)
-#        print(d)
-#        print(d.shape)
-#        print((h_max_mean / W).view(-1,1).shape)
-#        print(torch.cat(((h_max_mean / W).view(-1,1), (h_max_mean % W).view(-1,1)), dim=1).shape)
 		indices_h_max = torch.cat(((h_max_mean / W).view(-1,1), (h_max_mean % W).view(-1,1)), dim=1).view(N, C, F, 1, -1)
 		indices_h_min = torch.cat(((h_min_mean / W).view(-1,1), (h_min_mean % W).view(-1,1)), dim=1).view(N, C, F, 1, -1)
 		indices_h = torch.cat((indices_h_max,indices_h_min), dim=3)
-#        print(indices_h_max.shape)
-#        print(indices_h.shape)
+#		print(indices_h_max.shape)
+#		print(indices_h.shape)
 		
 		motion_h = self.mh_max_up(indices_h.float()).permute(0,1,2,4,3)		# 8x2x2  ->  8x2x14
-#        print(mh_max_up(indices_h.float()).shape)
-#        print(motion_h.shape)
-#        print(motion_h)
+#		print(mh_max_up(indices_h.float()).shape)
+#		print(motion_h.shape)
+#		print(motion_h)
 		motion_h = self.mh_min_up(motion_h.float())							# 8x14x2 ->  8x14x14
 		motion_h = self.mh_conv1(motion_h)			
         
