@@ -277,7 +277,7 @@ class MFNET_SP_LINEAR(nn.Module):
 		h = self.classifier(torch.cat((h, motion), dim=1))
 		#print(torch.cat((h, motion), dim=1).shape)
 
-		return h, motion_h
+		return h
 
 if __name__ == "__main__":
 	import torch
