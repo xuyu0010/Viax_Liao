@@ -12,11 +12,11 @@ def get_symbol(name, print_net=False, **kwargs):
 
 	if name.upper() == "C2D_50":
 		net = c2d50(**kwargs)
-	if name.upper() == "MFNET_BASE":
+	elif name.upper() == "MFNET_BASE":
 		net = MFNET_BASE(**kwargs)
-	if name.upper() == "CHANGE_1":
+	elif name.upper() == "CHANGE_1":
 		net = MFNET_SP_LINEAR_DUAL(**kwargs)
-	if name.upper() == "CHANGE_2":
+	elif name.upper() == "CHANGE_2":
 		net = MFNET_SP_LINEAR(**kwargs)
 
 	else:
