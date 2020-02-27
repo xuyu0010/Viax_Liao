@@ -1,0 +1,25 @@
+2020-02-27 19:01:53 INFO: Start evaluation with args:
+{
+    "batch_size": 8,
+    "clip_length": 32,
+    "dataset": "HMDB51",
+    "debug_mode": true,
+    "frame_interval": 2,
+    "gpus": "0,1,2,3,4,5,6,7",
+    "load_epoch": 0,
+    "log_file": "./eval-hmdb51-change1.log",
+    "model_dir": "./",
+    "model_prefix": "./../exps/models/Viax_Liao",
+    "network": "CHANGE_1",
+    "task_name": "../exps/models/Viax_Liao",
+    "test_rounds": 30,
+    "txt_list_file": "testlist01.txt",
+    "workers": 4
+}
+2020-02-27 19:01:53 DEBUG: Target dataset: 'HMDB51', configs: {'num_classes': 51}
+2020-02-27 19:01:53 WARNING: Initializer:: 'Tanh' is uninitialized.
+2020-02-27 19:01:53 WARNING: Initializer:: 'Motion_Exctractor_MEAN' is uninitialized.
+2020-02-27 19:01:53 WARNING: Initializer:: 'AvgPool1d' is uninitialized.
+2020-02-27 19:01:53 INFO: Network:: graph initialized, use random inilization!
+2020-02-27 19:01:53 DEBUG: loading network configs of: CHANGE_1
+2020-02-27 19:01:53 INFO: data:: {'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}
