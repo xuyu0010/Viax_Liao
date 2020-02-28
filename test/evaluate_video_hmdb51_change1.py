@@ -31,7 +31,7 @@ parser.add_argument('--clip-length', default=32,
 					help="define the length of each input sample.")    
 parser.add_argument('--frame-interval', type=int, default=2,
 					help="define the sampling interval between frames.")    
-parser.add_argument('--task-name', type=str, default='../exps/models/Viax_Liao',
+parser.add_argument('--task-name', type=str, default='Viax_Liao',
 					help="name of current task, leave it empty for using folder name")
 parser.add_argument('--model-dir', type=str, default="./",
 					help="set logging file.")
