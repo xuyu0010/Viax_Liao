@@ -50,7 +50,7 @@ parser.add_argument('--batch-size', type=int, default=8,
 					help="batch size")
 
 #other changes
-parser.add_argument('--txt_list_file', type=str, default='testlist01.txt',
+parser.add_argument('--txt_list_file', type=str, default='hmdb51_split1_test.txt',
 					help='list of testing videos, see list_cvt folder of each dataset for details')
 parser.add_argument('--workers', type=int, default=4, help='num_workers during evaluation data loading')
 parser.add_argument('--test_rounds', type=int, default=30, help='number of testing rounds')
@@ -113,7 +113,7 @@ if __name__ == '__main__':
 	net.load_checkpoint(epoch=args.load_epoch)
 	
 	# data iterator:
-	data_root = "../dataset/{}".format(args.dataset)
+	data_root = "..\\dataset\\{}".format(args.dataset)
 	normalize = transforms.Normalize(mean=input_config['mean'], std=input_config['std'])
 	val_sampler = sampler.RandomSampling(num=args.clip_length,
 										 interval=args.frame_interval,
