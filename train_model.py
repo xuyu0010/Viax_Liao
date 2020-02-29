@@ -36,14 +36,14 @@ def train_model(sym_net, model_prefix, dataset, input_conf,
                                                    seed=iter_seed)
     # wapper (dynamic model)
     net = model(net=sym_net,
-                # criterion=torch.nn.CrossEntropyLoss().cuda(),
-                criterion=torch.nn.CrossEntropyLoss(),
+                criterion=torch.nn.CrossEntropyLoss().cuda(),
+                # criterion=torch.nn.CrossEntropyLoss(),
                 model_prefix=model_prefix,
                 step_callback_freq=50,
                 save_checkpoint_freq=save_frequency,
                 opt_batch_size=batch_size, # optional
                 )
-    # net.net.cuda()
+    net.net.cuda()
 
     # config optimization
     param_base_layers = []
@@ -64,10 +64,10 @@ def train_model(sym_net, model_prefix, dataset, input_conf,
         logging.info("Optimizer:: >> recuding the learning rate of {} params: {}".format(len(name_base_layers),
                      out if len(out) < 300 else out[0:150] + " ... " + out[-150:]))
 
-    # if distributed:
-        # net.net = torch.nn.parallel.DistributedDataParallel(net.net).cuda()
-    # else:
-        # net.net = torch.nn.DataParallel(net.net).cuda()
+    if distributed:
+        net.net = torch.nn.parallel.DistributedDataParallel(net.net).cuda()
+    else:
+        net.net = torch.nn.DataParallel(net.net).cuda()
 
     optimizer = torch.optim.SGD([{'params': param_base_layers, 'lr_mult': 0.1},
                                  {'params': param_new_layers, 'lr_mult': 0.5}],
