@@ -25,23 +25,23 @@ parser = argparse.ArgumentParser(description="PyTorch Video Recognition Parser (
 parser.add_argument('--debug-mode', type=bool, default=True,
 					help="print all setting for debugging.")
 # io
-parser.add_argument('--dataset', default='UCF101', choices=['UCF101','Kinetics','HMDB51'],
+parser.add_argument('--dataset', default='HMDB51', choices=['UCF101','Kinetics','HMDB51'],
 					help="path to dataset")
 parser.add_argument('--clip-length', default=32,
 					help="define the length of each input sample.")    
 parser.add_argument('--frame-interval', type=int, default=2,
 					help="define the sampling interval between frames.")    
-parser.add_argument('--task-name', type=str, default='../exps/models/Viax_Liao',
+parser.add_argument('--task-name', type=str, default='Viax_Liao',
 					help="name of current task, leave it empty for using folder name")
 parser.add_argument('--model-dir', type=str, default="./",
 					help="set logging file.")
-parser.add_argument('--log-file', type=str, default="./eval-ucf101-split1.log",
+parser.add_argument('--log-file', type=str, default="./eval-hmdb51-change1.log",
 					help="set logging file.")
 # device
 parser.add_argument('--gpus', type=str, default="0,1,2,3,4,5,6,7",
 					help="define gpu id")
 # algorithm
-parser.add_argument('--network', type=str, default='mfnet_base',
+parser.add_argument('--network', type=str, default='CHANGE_1',
 					help="choose the base network")
 # evaluation
 parser.add_argument('--load-epoch', type=int, default=0,
@@ -50,7 +50,7 @@ parser.add_argument('--batch-size', type=int, default=8,
 					help="batch size")
 
 #other changes
-parser.add_argument('--txt_list_file', type=str, default='testlist01.txt',
+parser.add_argument('--txt_list_file', type=str, default='hmdb51_split1_test.txt',
 					help='list of testing videos, see list_cvt folder of each dataset for details')
 parser.add_argument('--workers', type=int, default=4, help='num_workers during evaluation data loading')
 parser.add_argument('--test_rounds', type=int, default=30, help='number of testing rounds')
@@ -89,9 +89,9 @@ if __name__ == '__main__':
 	logging.info("Start evaluation with args:\n" +
 				 json.dumps(vars(args), indent=4, sort_keys=True))
 
-	# set device states
-	# os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus # before using torch
-	# assert torch.cuda.is_available(), "CUDA is not available"
+	set device states
+	os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus # before using torch
+	assert torch.cuda.is_available(), "CUDA is not available"
 
 	# load dataset related configuration
 	dataset_cfg = dataset.get_config(name=args.dataset)
@@ -102,10 +102,10 @@ if __name__ == '__main__':
 	# network
 	if torch.cuda.is_available():
 		cudnn.benchmark = True
-		# sym_net = torch.nn.DataParallel(sym_net).cuda()
-		# criterion = torch.nn.CrossEntropyLoss().cuda()
+		sym_net = torch.nn.DataParallel(sym_net).cuda()
+		criterion = torch.nn.CrossEntropyLoss().cuda()
 	else:
-		# sym_net = torch.nn.DataParallel(sym_net)
+		sym_net = torch.nn.DataParallel(sym_net)
 		criterion = torch.nn.CrossEntropyLoss()
 	net = static_model(net=sym_net,
 					   criterion=criterion,
