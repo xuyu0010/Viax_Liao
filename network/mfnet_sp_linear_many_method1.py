@@ -278,8 +278,8 @@ if __name__ == "__main__":
 	# ---------
 	net = MFNET_SP_LINEAR_DUAL(num_classes=100, pretrained=False)
 	data = torch.autograd.Variable(torch.randn(5,3,16,224,224))
-	data = data#.cuda()
-	net = net#.cuda()
+	data = data.cuda()
+	net = net.cuda()
 	output = net(data)
 	# torch.save({'state_dict': net.state_dict()}, './tmp.pth')
 	print (output.shape)
