@@ -89,7 +89,7 @@ if __name__ == '__main__':
 	logging.info("Start evaluation with args:\n" +
 				 json.dumps(vars(args), indent=4, sort_keys=True))
 
-	set device states
+	# set device states
 	os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus # before using torch
 	assert torch.cuda.is_available(), "CUDA is not available"
 
