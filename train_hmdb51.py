@@ -35,7 +35,7 @@ parser.add_argument('--log-file', type=str, default="",
 parser.add_argument('--gpus', type=str, default="0,1,2,3,4,5,6,7",
                     help="define gpu id")
 # algorithm
-parser.add_argument('--network', type=str, default='MFNet_Base',
+parser.add_argument('--network', type=str, default='CHANGE_1',
                     help="chose the base network")
 # initialization with priority (the next step will overwrite the previous step)
 # - step 1: random initialize
@@ -52,19 +52,19 @@ parser.add_argument('--resume-epoch', type=int, default=-1,
 # optimization
 parser.add_argument('--fine-tune', type=bool, default=True,
                     help="apply different learning rate for different layers")
-parser.add_argument('--batch-size', type=int, default=4,
+parser.add_argument('--batch-size', type=int, default=6,
                     help="batch size")
 parser.add_argument('--lr-base', type=float, default=0.005,
                     help="learning rate")
 parser.add_argument('--lr-steps', type=list, 
-					# default=[int(1e4*x) for x in [5, 10, 15]],
-					default=[int(1e3*x) for x in [5, 10, 15]],
+					default=[int(1e4*x) for x in [5, 10, 15]],
+					# default=[int(1e3*x) for x in [5, 10, 15]],
                     help="number of samples to pass before changing learning rate") # 1e6 million
 parser.add_argument('--lr-factor', type=float, default=0.1,
                     help="reduce the learning with factor")
-parser.add_argument('--save-frequency', type=float, default=4,
+parser.add_argument('--save-frequency', type=float, default=8,
                     help="save once after N epochs")
-parser.add_argument('--end-epoch', type=int, default=8,
+parser.add_argument('--end-epoch', type=int, default=40,
                     help="maxmium number of training epoch")
 parser.add_argument('--random-seed', type=int, default=1,
                     help='random seed (default: 1)')
