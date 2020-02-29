@@ -16,6 +16,7 @@ from train import metric
 from data import video_sampler as sampler
 from data import video_transforms as transforms
 from data.video_iterator import VideoIter
+from data.iterator_factory import get_hmdb51
 from network.symbol_builder import get_symbol
 
 torch.backends.cudnn.enabled = False
@@ -41,7 +42,7 @@ parser.add_argument('--log-file', type=str, default="./eval-hmdb51-change1.log",
 parser.add_argument('--gpus', type=str, default="0,1,2,3,4,5,6,7",
 					help="define gpu id")
 # algorithm
-parser.add_argument('--network', type=str, default='mfnet_base',
+parser.add_argument('--network', type=str, default='CHANGE_1',
 					help="choose the base network")
 # evaluation
 parser.add_argument('--load-epoch', type=int, default=8,
@@ -89,10 +90,6 @@ if __name__ == '__main__':
 	logging.info("Start evaluation with args:\n" +
 				 json.dumps(vars(args), indent=4, sort_keys=True))
 
-	# set device states
-	# os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus # before using torch
-	# assert torch.cuda.is_available(), "CUDA is not available"
-
 	# load dataset related configuration
 	dataset_cfg = dataset.get_config(name=args.dataset)
 
@@ -102,10 +99,7 @@ if __name__ == '__main__':
 	# network
 	if torch.cuda.is_available():
 		cudnn.benchmark = True
-		# sym_net = torch.nn.DataParallel(sym_net).cuda()
-		# criterion = torch.nn.CrossEntropyLoss().cuda()
 	else:
-		# sym_net = torch.nn.DataParallel(sym_net)
 		criterion = torch.nn.CrossEntropyLoss()
 	net = static_model(net=sym_net,
 					   criterion=criterion,
@@ -113,26 +107,11 @@ if __name__ == '__main__':
 	net.load_checkpoint(epoch=args.load_epoch)
 	
 	# data iterator:
-	data_root = "..\\dataset\\{}".format(args.dataset)
 	normalize = transforms.Normalize(mean=input_config['mean'], std=input_config['std'])
 	val_sampler = sampler.RandomSampling(num=args.clip_length,
 										 interval=args.frame_interval,
 										 speed=[1.0, 1.0], seed=1)
-	val_loader = VideoIter(video_prefix=os.path.join(data_root, 'raw', 'data'), 
-					  txt_list=os.path.join(data_root, 'raw', 'list_cvt', args.txt_list_file), 
-					  sampler=val_sampler,
-					  force_color=True,
-					  video_transform=transforms.Compose([
-										 transforms.Resize((256,256)),
-										 transforms.RandomCrop((224,224)),
-										 # transforms.CenterCrop((224, 224)), # we did not use center crop in our paper
-										 # transforms.RandomHorizontalFlip(), # we did not use mirror in our paper
-										 transforms.ToTensor(),
-										 normalize,
-									  ]),
-					  name='test',
-					  return_item_subpath=True,
-					  )
+	_, val_loader = get_hmdb51()
 					  
 	eval_iter = torch.utils.data.DataLoader(val_loader,
 					  batch_size=args.batch_size,
