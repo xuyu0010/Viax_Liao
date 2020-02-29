@@ -41,12 +41,12 @@ parser.add_argument('--log-file', type=str, default="./eval-hmdb51-change1.log",
 parser.add_argument('--gpus', type=str, default="0,1,2,3,4,5,6,7",
 					help="define gpu id")
 # algorithm
-parser.add_argument('--network', type=str, default='CHANGE_1',
+parser.add_argument('--network', type=str, default='CHANGE_2',
 					help="choose the base network")
 # evaluation
 parser.add_argument('--load-epoch', type=int, default=8,
 					help="resume trained model")
-parser.add_argument('--batch-size', type=int, default=8,
+parser.add_argument('--batch-size', type=int, default=4,
 					help="batch size")
 
 #other changes
@@ -160,6 +160,8 @@ if __name__ == '__main__':
 		logging.info("round #{}/{}".format(i_round, total_round))
 		for data, target, video_subpath in eval_iter:
 			batch_start_time = time.time()
+			data = data.to("cuda")
+			target = target.to("cuda")
 
 			outputs, losses = net.forward(data, target)
 
