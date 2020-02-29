@@ -233,7 +233,6 @@ class MFNET_SP_LINEAR_DUAL(nn.Module):
 			logging.info("Network:: graph initialized, use random inilization!")
 
 	def forward(self, x):
-		print(x.shape)
 		assert x.shape[2] == 16
 
 		h = self.conv1(x)   # x224 -> x112

@@ -27,7 +27,7 @@ parser.add_argument('--debug-mode', type=bool, default=True,
 # io
 parser.add_argument('--dataset', default='HMDB51', choices=['UCF101','Kinetics','HMDB51'],
 					help="path to dataset")
-parser.add_argument('--clip-length', default=32,
+parser.add_argument('--clip-length', default=16,
 					help="define the length of each input sample.")    
 parser.add_argument('--frame-interval', type=int, default=2,
 					help="define the sampling interval between frames.")    
