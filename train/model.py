@@ -37,15 +37,15 @@ class static_model(object):
             net_state_keys = list(self.net.state_dict().keys())
             for name, param in state_dict.items():
                 name_pretrained = name[7:]
-                # if name in self.net.state_dict().keys():
-                if name_pretrained in self.net.state_dict().keys():
-                    # dst_param_shape = self.net.state_dict()[name].shape
-                    dst_param_shape = self.net.state_dict()[name_pretrained].shape
+                if name in self.net.state_dict().keys():
+                # if name_pretrained in self.net.state_dict().keys():
+                    dst_param_shape = self.net.state_dict()[name].shape
+                    # dst_param_shape = self.net.state_dict()[name_pretrained].shape
                     if param.shape == dst_param_shape:
-                        # self.net.state_dict()[name].copy_(param.view(dst_param_shape))
-                        self.net.state_dict()[name_pretrained].copy_(param.view(dst_param_shape))
-                        # net_state_keys.remove(name)
-                        net_state_keys.remove(name_pretrained)
+                        self.net.state_dict()[name].copy_(param.view(dst_param_shape))
+                        # self.net.state_dict()[name_pretrained].copy_(param.view(dst_param_shape))
+                        net_state_keys.remove(name)
+                        # net_state_keys.remove(name_pretrained)
             # indicating missed keys
             if net_state_keys:
                 num_batches_list = []
