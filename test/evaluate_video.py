@@ -105,7 +105,7 @@ if __name__ == '__main__':
 		# sym_net = torch.nn.DataParallel(sym_net).cuda()
 		# criterion = torch.nn.CrossEntropyLoss().cuda()
 	# else:
-	sym_net = torch.nn.DataParallel(sym_net)
+	# sym_net = torch.nn.DataParallel(sym_net)
 	criterion = torch.nn.CrossEntropyLoss()
 	net = static_model(net=sym_net,
 					   criterion=criterion,
@@ -148,6 +148,7 @@ if __name__ == '__main__':
 
 	# main loop
 	net.net.eval()
+	net = net.cpu()
 	avg_score = {}
 	sum_batch_elapse = 0.
 	sum_batch_inst = 0
