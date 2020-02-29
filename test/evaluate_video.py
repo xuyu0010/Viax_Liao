@@ -100,13 +100,13 @@ if __name__ == '__main__':
 	sym_net, input_config = get_symbol(name=args.network, **dataset_cfg)
 	
 	# network
-	if torch.cuda.is_available():
-		cudnn.benchmark = True
-		sym_net = torch.nn.DataParallel(sym_net).cuda()
-		criterion = torch.nn.CrossEntropyLoss().cuda()
-	else:
-		sym_net = torch.nn.DataParallel(sym_net)
-		criterion = torch.nn.CrossEntropyLoss()
+	# if torch.cuda.is_available():
+		# cudnn.benchmark = True
+		# sym_net = torch.nn.DataParallel(sym_net).cuda()
+		# criterion = torch.nn.CrossEntropyLoss().cuda()
+	# else:
+	sym_net = torch.nn.DataParallel(sym_net)
+	criterion = torch.nn.CrossEntropyLoss()
 	net = static_model(net=sym_net,
 					   criterion=criterion,
 					   model_prefix=args.model_prefix)
@@ -159,6 +159,8 @@ if __name__ == '__main__':
 		i_batch = 0
 		logging.info("round #{}/{}".format(i_round, total_round))
 		for data, target, video_subpath in eval_iter:
+			data = data.to('cpu')
+			target = target.to('cpu')
 			batch_start_time = time.time()
 
 			outputs, losses = net.forward(data, target)
