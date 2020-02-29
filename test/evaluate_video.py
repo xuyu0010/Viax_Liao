@@ -44,7 +44,7 @@ parser.add_argument('--gpus', type=str, default="0,1,2,3,4,5,6,7",
 parser.add_argument('--network', type=str, default='CHANGE_1',
 					help="choose the base network")
 # evaluation
-parser.add_argument('--load-epoch', type=int, default=0,
+parser.add_argument('--load-epoch', type=int, default=8,
 					help="resume trained model")
 parser.add_argument('--batch-size', type=int, default=8,
 					help="batch size")
