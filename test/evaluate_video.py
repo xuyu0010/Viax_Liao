@@ -101,7 +101,7 @@ if __name__ == '__main__':
 	
 	# network
 	# if torch.cuda.is_available():
-		cudnn.benchmark = True
+		# cudnn.benchmark = True
 		# sym_net = torch.nn.DataParallel(sym_net).cuda()
 		# criterion = torch.nn.CrossEntropyLoss().cuda()
 	# else:
