@@ -115,10 +115,10 @@ if __name__ == "__main__":
                  json.dumps(vars(args), indent=4, sort_keys=True))
 
     # set device states
-    # os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus # before using torch
-    # assert torch.cuda.is_available(), "CUDA is not available"
+    os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus # before using torch
+    assert torch.cuda.is_available(), "CUDA is not available"
     torch.manual_seed(args.random_seed)
-    # torch.cuda.manual_seed(args.random_seed)
+    torch.cuda.manual_seed(args.random_seed)
 
     # distributed training
     args.distributed = args.world_size > 1

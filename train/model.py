@@ -117,9 +117,9 @@ class static_model(object):
         """
         # data = data.float().cuda(async=True)
         # target = target.cuda(async=True)
-        # data = data.float().cuda()
-        # target = target.cuda()
-        data = data.float()
+        data = data.float().cuda()
+        target = target.cuda()
+        # data = data.float()
         if self.net.training:
             torch.set_grad_enabled(True) # for pytorch040 version
             input_var = torch.autograd.Variable(data, requires_grad=False)
