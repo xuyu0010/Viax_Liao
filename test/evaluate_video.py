@@ -100,13 +100,13 @@ if __name__ == '__main__':
 	sym_net, input_config = get_symbol(name=args.network, **dataset_cfg)
 	
 	# network
-	# if torch.cuda.is_available():
-		# cudnn.benchmark = True
-		# sym_net = torch.nn.DataParallel(sym_net).cuda()
-		# criterion = torch.nn.CrossEntropyLoss().cuda()
-	# else:
-	sym_net = torch.nn.DataParallel(sym_net)
-	criterion = torch.nn.CrossEntropyLoss()
+	if torch.cuda.is_available():
+		cudnn.benchmark = True
+		sym_net = torch.nn.DataParallel(sym_net).cuda()
+		criterion = torch.nn.CrossEntropyLoss().cuda()
+	else:
+		sym_net = torch.nn.DataParallel(sym_net)
+		criterion = torch.nn.CrossEntropyLoss()
 	net = static_model(net=sym_net,
 					   criterion=criterion,
 					   model_prefix=args.model_prefix)
