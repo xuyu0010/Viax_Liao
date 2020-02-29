@@ -90,8 +90,8 @@ if __name__ == '__main__':
 				 json.dumps(vars(args), indent=4, sort_keys=True))
 
 	# set device states
-	os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus # before using torch
-	assert torch.cuda.is_available(), "CUDA is not available"
+	# os.environ["CUDA_VISIBLE_DEVICES"] = args.gpus # before using torch
+	# assert torch.cuda.is_available(), "CUDA is not available"
 
 	# load dataset related configuration
 	dataset_cfg = dataset.get_config(name=args.dataset)
@@ -100,13 +100,13 @@ if __name__ == '__main__':
 	sym_net, input_config = get_symbol(name=args.network, **dataset_cfg)
 	
 	# network
-	if torch.cuda.is_available():
+	# if torch.cuda.is_available():
 		cudnn.benchmark = True
-		sym_net = torch.nn.DataParallel(sym_net).cuda()
-		criterion = torch.nn.CrossEntropyLoss().cuda()
-	else:
-		sym_net = torch.nn.DataParallel(sym_net)
-		criterion = torch.nn.CrossEntropyLoss()
+		# sym_net = torch.nn.DataParallel(sym_net).cuda()
+		# criterion = torch.nn.CrossEntropyLoss().cuda()
+	# else:
+	sym_net = torch.nn.DataParallel(sym_net)
+	criterion = torch.nn.CrossEntropyLoss()
 	net = static_model(net=sym_net,
 					   criterion=criterion,
 					   model_prefix=args.model_prefix)
