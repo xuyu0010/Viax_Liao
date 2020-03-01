@@ -31,17 +31,17 @@ parser.add_argument('--clip-length', default=16,
 					help="define the length of each input sample.")    
 parser.add_argument('--frame-interval', type=int, default=2,
 					help="define the sampling interval between frames.")    
-parser.add_argument('--task-name', type=str, default='Viax_Liao',
+parser.add_argument('--task-name', type=str, default='../exps/models/archive/Viax_Liao',
 					help="name of current task, leave it empty for using folder name")
 parser.add_argument('--model-dir', type=str, default="./",
 					help="set logging file.")
-parser.add_argument('--log-file', type=str, default="./eval-hmdb51-change1.log",
+parser.add_argument('--log-file', type=str, default="./eval-hmdb51-change1-0301.log",
 					help="set logging file.")
 # device
 parser.add_argument('--gpus', type=str, default="0,1,2,3,4,5,6,7",
 					help="define gpu id")
 # algorithm
-parser.add_argument('--network', type=str, default='CHANGE_2',
+parser.add_argument('--network', type=str, default='CHANGE_1',
 					help="choose the base network")
 # evaluation
 parser.add_argument('--load-epoch', type=int, default=8,
