@@ -55,7 +55,7 @@ class Motion_Exctractor_Max(nn.Module):
 		W = h.shape[3]  #width
 
 		dim_total = N * C * F   #维度
-		h_flatten = h.view(N, C, F, -1)#为了将前面多维度的tensor展平成一维
+		h_flatten = h.view(N, C, F, -1) #为了将前面多维度的tensor展平成一维
 		indices_h = torch.argmax(h_flatten, dim=3).view(dim_total, -1)
 		indices_h = torch.cat(((indices_h / W).view(-1,1), (indices_h % W).view(-1,1)), dim=1).view(N, C, F, -1)#为什么要indices_h / W和indices_h % W，并进行cat运算
 		
@@ -114,8 +114,10 @@ class Motion_Exctractor_MEAN(nn.Module):
 #		print(h_maxk)
 #		print(h_top5_max.shape)
 		h_top5_max = self.mh_up2(h_top5_max)
+		indices_h_cen = torch.zeros(5, 5, 2)
+		if torch.cuda.is_available():
+			indices_h_cen = indices_h_cen.cuda()
 
-		indices_h_cen = torch.zeros(5, 5, 2)#.cuda()
 		for i in range(5):
 			for j in range(5):
 				indices_h_cen[i,j,:] = torch.FloatTensor([i,j])#类型转换
@@ -285,8 +287,8 @@ if __name__ == "__main__":
 	# ---------
 	net = MFNET_SP_LINEAR(num_classes=100, pretrained=False)
 	data = torch.autograd.Variable(torch.randn(5,3,16,224,224))
-	data = data#.cuda()
-	net = net#.cuda()
+	data = data.cuda()
+	net = net.cuda()
 	output = net(data)
 	# torch.save({'state_dict': net.state_dict()}, './tmp.pth')
 	print (output.shape)

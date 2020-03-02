@@ -9,7 +9,7 @@ def xavier(net):
     def weights_init(m):
         classname = m.__class__.__name__
         if classname.find('Conv') != -1 and hasattr(m, 'weight'):
-            torch.nn.init.xavier_uniform(m.weight.data, gain=1.)
+            torch.nn.init.xavier_uniform_(m.weight.data, gain=1.)
             if m.bias is not None:
                 m.bias.data.zero_()
         elif classname.find('BatchNorm') != -1:
@@ -17,7 +17,7 @@ def xavier(net):
             if m.bias is not None:
                 m.bias.data.zero_()
         elif classname.find('Linear') != -1:
-            torch.nn.init.xavier_uniform(m.weight.data, gain=1.)
+            torch.nn.init.xavier_uniform_(m.weight.data, gain=1.)
             if m.bias is not None:
                 m.bias.data.zero_()
         elif classname in ['Sequential', 'AvgPool3d', 'MaxPool3d', \
