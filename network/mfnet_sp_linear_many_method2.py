@@ -10,6 +10,7 @@ from collections import OrderedDict
 import torch.nn as nn
 import torch
 
+
 try:
 	from . import initializer
 except:
@@ -123,9 +124,23 @@ class Motion_Exctractor_MEAN(nn.Module):
 				indices_h_cen[i,j,:] = torch.FloatTensor([i,j])#类型转换
 		indices_h_cen = torch.matmul(h_top5_max, indices_h_cen.view(-1,2))
 		indices_h_cen = indices_h_cen[:,:,1:F,:] - indices_h_cen[:,:,0:(F-1),:]
+		indices_h_cen = self.mh_up(indices_h_cen) #  7x2 -> 7x14
 
-		motion_h = self.mh_up(indices_h_cen)					#  7x2 -> 7x14
-		motion_h = self.mh_conv1(motion_h)				# 7x14 -> 7x7 
+########attention########
+		weight_W = nn.Parameter(torch.Tensor(20, 20))
+		weight_proj = nn.Parameter(torch.Tensor(20, 1))
+
+
+		nn.init.uniform_(weight_W, 0, 1)
+		nn.init.uniform_(weight_proj, 0, 1)
+
+		u = torch.tanh(torch.matmul(indices_h_cen, weight_W))
+		att = torch.matmul(u, weight_proj)
+		att_score = nn.functional.softmax(att, dim=2)
+		scored_indices = indices_h_cen * att_score
+
+
+		motion_h = self.mh_conv1( scored_indices)				# 7x14 -> 7x7 
 		motion_h = self.mh_conv2(motion_h)				# 7x7  -> 7x4
 		motion_h = self.mh_pool(motion_h)
 
@@ -287,8 +302,8 @@ if __name__ == "__main__":
 	# ---------
 	net = MFNET_SP_LINEAR(num_classes=100, pretrained=False)
 	data = torch.autograd.Variable(torch.randn(5,3,16,224,224))
-	data = data.cuda()
-	net = net.cuda()
+	data = data#.cuda()
+	net = net#cuda()
 	output = net(data)
 	# torch.save({'state_dict': net.state_dict()}, './tmp.pth')
 	print (output.shape)
