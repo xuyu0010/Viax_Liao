@@ -1,4 +1,3 @@
-<<<<<<< HEAD:network/mfnet_sp_linear_many_method2_b.py
 # -*- coding: utf-8 -*-
 """
 @author: lcx98
@@ -618,4 +617,3 @@ if __name__ == "__main__":
 	output = net(data)
 	# torch.save({'state_dict': net.state_dict()}, './tmp.pth')
 	print (output.shape)
->>>>>>> 9f51916505bd602f85992663eba794319b8b608b:network/mfnet_sp_linear_many_method2.py
