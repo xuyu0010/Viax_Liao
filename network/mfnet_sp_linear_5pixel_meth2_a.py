@@ -158,10 +158,10 @@ class Motion_Exctractor_MEAN(nn.Module):
 
 
 
-class MFNET_SP_LINEAR(nn.Module):
+class MFNET_FIVEP_LINEAR_PIXEL(nn.Module):
 
 	def __init__(self, num_classes, pretrained=False, **kwargs):
-		super(MFNET_SP_LINEAR, self).__init__()
+		super(MFNET_FIVEP_LINEAR_PIXEL, self).__init__()
 
 		groups = 16
 		k_sec  = {  2: 3, \
