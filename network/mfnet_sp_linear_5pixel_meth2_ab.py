@@ -325,7 +325,7 @@ if __name__ == "__main__":
 	import torch
 	logging.getLogger().setLevel(logging.DEBUG)
 	# ---------
-	net = MFNET_SP_LINEAR(num_classes=100, pretrained=False)
+	net = MFNET_FIVEP_LINEAR_FRA_PIX(num_classes=100, pretrained=False)
 	data = torch.autograd.Variable(torch.randn(5,3,16,224,224))
 	data = data.cuda()
 	net = net.cuda()
