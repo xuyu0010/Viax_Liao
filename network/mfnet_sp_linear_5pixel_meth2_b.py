@@ -1,4 +1,4 @@
-<<<<<<< HEAD:network/mfnet_sp_linear_many_method2_b.py
+
 # -*- coding: utf-8 -*-
 """
 @author: lcx98
