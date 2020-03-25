@@ -155,6 +155,10 @@ class Motion_Exctractor_MEAN(nn.Module):
 		weight_W2 = nn.Parameter(torch.Tensor(7, 7))
 		weight_proj2 = nn.Parameter(torch.Tensor(20, 1))
 
+		if torch.cuda.is_available():
+			weight_W2 = weight_W2.cuda()
+			weight_proj2 = weight_proj2.cuda()
+
 
 		nn.init.uniform_(weight_W2, 0, 1)
 		nn.init.uniform_(weight_proj2, 0, 1)
