@@ -1,0 +1,208 @@
+2020-03-27 16:38:34 INFO: Start evaluation with args:
+{
+    "batch_size": 4,
+    "clip_length": 16,
+    "dataset": "HMDB51",
+    "debug_mode": true,
+    "frame_interval": 2,
+    "gpus": "0,1,2,3,4,5,6,7",
+    "load_epoch": 40,
+    "log_file": "./eval-hmdb51-change_b-0327.log",
+    "model_dir": "./",
+    "model_prefix": "./../exps/models/archive/Viax_Liao",
+    "network": "CHANGE_B",
+    "task_name": "../exps/models/archive/Viax_Liao",
+    "test_rounds": 30,
+    "txt_list_file": "hmdb51_split1_test.txt",
+    "workers": 4
+}
+2020-03-27 16:38:34 DEBUG: Target dataset: 'HMDB51', configs: {'num_classes': 51}
+2020-03-27 16:38:34 WARNING: Initializer:: 'Tanh' is uninitialized.
+2020-03-27 16:38:34 WARNING: Initializer:: 'Tanh' is uninitialized.
+2020-03-27 16:38:34 WARNING: Initializer:: 'AvgPool2d' is uninitialized.
+2020-03-27 16:38:34 WARNING: Initializer:: 'Motion_Exctractor_MEAN' is uninitialized.
+2020-03-27 16:38:34 WARNING: Initializer:: 'AvgPool1d' is uninitialized.
+2020-03-27 16:38:34 INFO: Network:: graph initialized, use random inilization!
+2020-03-27 16:38:34 DEBUG: loading network configs of: CHANGE_B
+2020-03-27 16:38:34 INFO: data:: {'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}
+2020-03-27 16:38:37 INFO: Only model state resumed from: `./../exps/models/archive/Viax_Liao_ep-0040.pth'
+2020-03-27 16:38:37 WARNING: VideoIter:: >> `check_video' is off, `tolerant_corrupted_video' is automatically activated.
+2020-03-27 16:38:37 INFO: VideoIter:: found 1530 videos in `../dataset/HMDB51/raw/list_cvt/hmdb51_split1_test.txt'
+2020-03-27 16:38:37 INFO: VideoIter:: iterator initialized (phase: 'test', num: 1530)
+2020-03-27 16:38:37 INFO: round #0/30
+2020-03-27 16:38:38 INFO: 0.0%, 1.0 	| Batch [0,0]    	Avg: loss-ce = 0.03081, top1 = 1.00000, top5 = 1.00000
+2020-03-27 16:39:01 INFO: 26.1%, 1.0 	| Batch [0,100]    	Avg: loss-ce = 1.00180, top1 = 0.74505, top5 = 0.94059
+2020-03-27 16:39:22 INFO: 52.2%, 1.0 	| Batch [0,200]    	Avg: loss-ce = 1.01993, top1 = 0.72637, top5 = 0.94030
+2020-03-27 16:39:43 INFO: 78.3%, 1.0 	| Batch [0,300]    	Avg: loss-ce = 1.06724, top1 = 0.72259, top5 = 0.92940
+2020-03-27 16:40:00 INFO: round #1/30
+2020-03-27 16:40:02 INFO: 0.0%, 1.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.70588, top5 = 0.92484
+2020-03-27 16:40:24 INFO: 26.1%, 2.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.70915, top5 = 0.92745
+2020-03-27 16:40:45 INFO: 52.2%, 2.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.71699, top5 = 0.92680
+2020-03-27 16:41:07 INFO: 78.3%, 2.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.72157, top5 = 0.92941
+2020-03-27 16:41:25 INFO: round #2/30
+2020-03-27 16:41:26 INFO: 0.0%, 2.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.72484, top5 = 0.93072
+2020-03-27 16:41:48 INFO: 26.1%, 3.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.72549, top5 = 0.93399
+2020-03-27 16:42:09 INFO: 52.2%, 3.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.72549, top5 = 0.93268
+2020-03-27 16:42:31 INFO: 78.3%, 3.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.72941, top5 = 0.93529
+2020-03-27 16:42:48 INFO: round #3/30
+2020-03-27 16:42:49 INFO: 0.0%, 3.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.72941, top5 = 0.93529
+2020-03-27 16:43:10 INFO: 26.1%, 4.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93660
+2020-03-27 16:43:31 INFO: 52.2%, 4.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93529
+2020-03-27 16:43:54 INFO: 78.3%, 4.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73268, top5 = 0.93595
+2020-03-27 16:44:12 INFO: round #4/30
+2020-03-27 16:44:13 INFO: 0.0%, 4.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73203, top5 = 0.93529
+2020-03-27 16:44:35 INFO: 26.1%, 5.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93660
+2020-03-27 16:44:57 INFO: 52.2%, 5.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93725
+2020-03-27 16:45:19 INFO: 78.3%, 5.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73203, top5 = 0.93595
+2020-03-27 16:45:37 INFO: round #5/30
+2020-03-27 16:45:38 INFO: 0.0%, 5.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93529
+2020-03-27 16:46:00 INFO: 26.1%, 6.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73007, top5 = 0.93399
+2020-03-27 16:46:21 INFO: 52.2%, 6.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93399
+2020-03-27 16:46:44 INFO: 78.3%, 6.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93333
+2020-03-27 16:47:01 INFO: round #6/30
+2020-03-27 16:47:02 INFO: 0.0%, 6.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93399
+2020-03-27 16:47:24 INFO: 26.1%, 7.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93203
+2020-03-27 16:47:46 INFO: 52.2%, 7.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73137, top5 = 0.93333
+2020-03-27 16:48:08 INFO: 78.3%, 7.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73137, top5 = 0.93333
+2020-03-27 16:48:26 INFO: round #7/30
+2020-03-27 16:48:26 WARNING: VideoIter:: ERROR!! (Force using another index:
+684)
+VideoIter:: >> frame [30] is error & backup is inavailable. [../dataset/HMDB51/raw/data/kick/kick__Best_fight_scene_of_all_time_kick_f_cm_np1_ri_bad_4.avi]'
+2020-03-27 16:48:27 INFO: 0.0%, 7.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93399
+2020-03-27 16:48:50 INFO: 26.1%, 8.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73007, top5 = 0.93399
+2020-03-27 16:49:12 INFO: 52.2%, 8.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93464
+2020-03-27 16:49:34 INFO: 78.3%, 8.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73203, top5 = 0.93464
+2020-03-27 16:49:51 INFO: round #8/30
+2020-03-27 16:49:52 INFO: 0.0%, 8.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73268, top5 = 0.93529
+2020-03-27 16:50:14 INFO: 26.1%, 8.9 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93529
+2020-03-27 16:50:36 INFO: 52.2%, 9.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93529
+2020-03-27 16:50:57 INFO: 78.3%, 9.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73203, top5 = 0.93725
+2020-03-27 16:51:15 INFO: round #9/30
+2020-03-27 16:51:16 INFO: 0.0%, 9.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93660
+2020-03-27 16:51:38 INFO: 26.1%, 10.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93725
+2020-03-27 16:52:00 INFO: 52.2%, 10.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93791
+2020-03-27 16:52:22 INFO: 78.3%, 10.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73268, top5 = 0.93856
+2020-03-27 16:52:40 INFO: round #10/30
+2020-03-27 16:52:41 INFO: 0.0%, 10.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93856
+2020-03-27 16:53:03 INFO: 26.1%, 11.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93791
+2020-03-27 16:53:25 INFO: 52.2%, 11.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93791
+2020-03-27 16:53:46 INFO: 78.3%, 11.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93725
+2020-03-27 16:54:03 INFO: round #11/30
+2020-03-27 16:54:04 INFO: 0.0%, 11.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93725
+2020-03-27 16:54:26 INFO: 26.1%, 12.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73268, top5 = 0.93725
+2020-03-27 16:54:49 INFO: 52.2%, 12.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73203, top5 = 0.93791
+2020-03-27 16:55:11 INFO: 78.3%, 12.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73203, top5 = 0.93856
+2020-03-27 16:55:29 INFO: round #12/30
+2020-03-27 16:55:30 INFO: 0.0%, 12.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73203, top5 = 0.93725
+2020-03-27 16:55:53 INFO: 26.1%, 13.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73203, top5 = 0.93660
+2020-03-27 16:56:15 INFO: 52.2%, 13.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93725
+2020-03-27 16:56:36 INFO: 78.3%, 13.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93791
+2020-03-27 16:56:54 INFO: round #13/30
+2020-03-27 16:56:55 INFO: 0.0%, 13.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93856
+2020-03-27 16:57:16 INFO: 26.1%, 14.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.72941, top5 = 0.93791
+2020-03-27 16:57:38 INFO: 52.2%, 14.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73007, top5 = 0.93856
+2020-03-27 16:58:00 INFO: 78.3%, 14.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93791
+2020-03-27 16:58:17 INFO: round #14/30
+2020-03-27 16:58:18 INFO: 0.0%, 14.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93856
+2020-03-27 16:58:40 INFO: 26.1%, 15.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93856
+2020-03-27 16:59:02 INFO: 52.2%, 15.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73137, top5 = 0.93791
+2020-03-27 16:59:24 INFO: 78.3%, 15.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73007, top5 = 0.93922
+2020-03-27 16:59:41 INFO: round #15/30
+2020-03-27 16:59:43 INFO: 0.0%, 15.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73072, top5 = 0.93856
+2020-03-27 17:00:05 INFO: 26.1%, 16.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73137, top5 = 0.93791
+2020-03-27 17:00:27 INFO: 52.2%, 16.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93856
+2020-03-27 17:00:49 INFO: 78.3%, 16.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93791
+2020-03-27 17:01:05 INFO: round #16/30
+2020-03-27 17:01:06 INFO: 0.0%, 16.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73595, top5 = 0.93791
+2020-03-27 17:01:29 INFO: 26.1%, 17.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73660, top5 = 0.93856
+2020-03-27 17:01:51 INFO: 52.2%, 17.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73725, top5 = 0.93922
+2020-03-27 17:02:13 INFO: 78.3%, 17.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73595, top5 = 0.93922
+2020-03-27 17:02:31 INFO: round #17/30
+2020-03-27 17:02:32 INFO: 0.0%, 17.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93922
+2020-03-27 17:02:55 INFO: 26.1%, 18.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93922
+2020-03-27 17:03:18 INFO: 52.2%, 18.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73268, top5 = 0.93922
+2020-03-27 17:03:40 INFO: 78.3%, 18.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93987
+2020-03-27 17:03:57 INFO: round #18/30
+2020-03-27 17:03:59 INFO: 0.0%, 18.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73137, top5 = 0.93922
+2020-03-27 17:04:20 INFO: 26.1%, 19.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73137, top5 = 0.93856
+2020-03-27 17:04:42 INFO: 52.2%, 19.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73137, top5 = 0.93791
+2020-03-27 17:05:03 INFO: 78.3%, 19.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73268, top5 = 0.93791
+2020-03-27 17:05:22 INFO: round #19/30
+2020-03-27 17:05:23 INFO: 0.0%, 19.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73268, top5 = 0.93791
+2020-03-27 17:05:45 INFO: 26.1%, 20.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73268, top5 = 0.93725
+2020-03-27 17:06:07 INFO: 52.2%, 20.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73203, top5 = 0.93660
+2020-03-27 17:06:30 INFO: 78.3%, 20.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73268, top5 = 0.93725
+2020-03-27 17:06:47 INFO: round #20/30
+2020-03-27 17:06:48 INFO: 0.0%, 20.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73203, top5 = 0.93725
+2020-03-27 17:07:10 INFO: 26.1%, 21.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93660
+2020-03-27 17:07:31 INFO: 52.2%, 21.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93660
+2020-03-27 17:07:52 INFO: 78.3%, 21.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93660
+2020-03-27 17:08:10 INFO: round #21/30
+2020-03-27 17:08:11 INFO: 0.0%, 21.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93660
+2020-03-27 17:08:33 INFO: 26.1%, 22.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93725
+2020-03-27 17:08:55 INFO: 52.2%, 22.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93725
+2020-03-27 17:09:18 INFO: 78.3%, 22.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93856
+2020-03-27 17:09:35 INFO: round #22/30
+2020-03-27 17:09:36 INFO: 0.0%, 22.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93922
+2020-03-27 17:10:00 INFO: 26.1%, 23.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93922
+2020-03-27 17:10:22 INFO: 52.2%, 23.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93987
+2020-03-27 17:10:43 INFO: 78.3%, 23.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93987
+2020-03-27 17:11:00 INFO: round #23/30
+2020-03-27 17:11:02 INFO: 0.0%, 23.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93856
+2020-03-27 17:11:24 INFO: 26.1%, 24.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93856
+2020-03-27 17:11:46 INFO: 52.2%, 24.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93791
+2020-03-27 17:12:07 INFO: 78.3%, 24.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73595, top5 = 0.93791
+2020-03-27 17:12:25 INFO: round #24/30
+2020-03-27 17:12:26 INFO: 0.0%, 24.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73529, top5 = 0.93725
+2020-03-27 17:12:47 INFO: 26.1%, 25.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73529, top5 = 0.93660
+2020-03-27 17:13:08 INFO: 52.2%, 25.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93660
+2020-03-27 17:13:29 INFO: 78.3%, 25.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93660
+2020-03-27 17:13:46 INFO: round #25/30
+2020-03-27 17:13:48 INFO: 0.0%, 25.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93595
+2020-03-27 17:14:10 INFO: 26.1%, 26.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93595
+2020-03-27 17:14:33 INFO: 52.2%, 26.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93595
+2020-03-27 17:14:54 INFO: 78.3%, 26.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93595
+2020-03-27 17:15:12 INFO: round #26/30
+2020-03-27 17:15:13 INFO: 0.0%, 26.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73464, top5 = 0.93595
+2020-03-27 17:15:35 INFO: 26.1%, 27.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73529, top5 = 0.93725
+2020-03-27 17:15:56 INFO: 52.2%, 27.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93725
+2020-03-27 17:16:19 INFO: 78.3%, 27.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73268, top5 = 0.93660
+2020-03-27 17:16:37 INFO: round #27/30
+2020-03-27 17:16:38 INFO: 0.0%, 27.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93660
+2020-03-27 17:16:59 INFO: 26.1%, 28.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93660
+2020-03-27 17:17:22 INFO: 52.2%, 28.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73268, top5 = 0.93660
+2020-03-27 17:17:43 INFO: 78.3%, 28.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93725
+2020-03-27 17:18:01 INFO: round #28/30
+2020-03-27 17:18:02 INFO: 0.0%, 28.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93725
+2020-03-27 17:18:24 INFO: 26.1%, 29.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93725
+2020-03-27 17:18:45 INFO: 52.2%, 29.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93791
+2020-03-27 17:19:06 INFO: 78.3%, 29.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93791
+2020-03-27 17:19:24 INFO: round #29/30
+2020-03-27 17:19:26 INFO: 0.0%, 29.3 	| Batch [0,0]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93791
+2020-03-27 17:19:47 INFO: 26.1%, 30.0 	| Batch [0,100]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93791
+2020-03-27 17:20:09 INFO: 52.2%, 30.0 	| Batch [0,200]    	Avg: loss-ce = 1.12606, top1 = 0.73333, top5 = 0.93791
+2020-03-27 17:20:32 INFO: 78.3%, 30.0 	| Batch [0,300]    	Avg: loss-ce = 1.12606, top1 = 0.73399, top5 = 0.93791
+2020-03-27 17:20:49 INFO: Evaluation Finished!
+2020-03-27 17:20:50 INFO: Total time cost: 1661.5 sec
+2020-03-27 17:20:50 INFO: Speed: 27.6611 samples/sec
+2020-03-27 17:20:50 INFO: Accuracy:
+2020-03-27 17:20:50 INFO: [
+    [
+        [
+            "loss-ce",
+            1.1260632510278739
+        ]
+    ],
+    [
+        [
+            "top1",
+            0.7352941176470589
+        ]
+    ],
+    [
+        [
+            "top5",
+            0.9379084967320261
+        ]
+    ]
+]
