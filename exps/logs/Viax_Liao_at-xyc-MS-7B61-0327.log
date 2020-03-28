@@ -1,0 +1,471 @@
+2020-03-27 17:38:40: Using pytorch 1.1.0 (['/home/xyc/anaconda3/envs/pytorch110/lib/python3.7/site-packages/torch'])
+2020-03-27 17:38:40: Start training with args:
+{
+    "backend": "nccl",
+    "batch_size": 16,
+    "clip_length": 16,
+    "dataset": "HMDB51",
+    "debug_mode": true,
+    "dist_url": "tcp://192.168.0.11:23456",
+    "end_epoch": 40,
+    "fine_tune": true,
+    "gpus": "0,1,2,3,4,5,6,7",
+    "log_file": "./exps/logs/Viax_Liao_at-xyc-MS-7B61.log",
+    "lr_base": 0.005,
+    "lr_factor": 0.1,
+    "lr_steps": [
+        50000,
+        100000,
+        150000
+    ],
+    "model_dir": "./exps/models/archive",
+    "model_prefix": "./exps/models/archive/Viax_Liao",
+    "network": "CHANGE_AB",
+    "pretrained_2d": true,
+    "pretrained_3d": "./network/pretrained/MFNet3D_Kinetics-400_72.8.pth",
+    "random_seed": 1,
+    "resume_epoch": -1,
+    "save_frequency": 8,
+    "task_name": "Viax_Liao",
+    "train_frame_interval": 2,
+    "val_frame_interval": 2,
+    "world_size": 1
+}
+2020-03-27 17:38:40: Target dataset: 'HMDB51', configs: {'num_classes': 51}
+2020-03-27 17:38:40: Initializer:: 'Tanh' is uninitialized.
+2020-03-27 17:38:40: Initializer:: 'Tanh' is uninitialized.
+2020-03-27 17:38:40: Initializer:: 'AvgPool2d' is uninitialized.
+2020-03-27 17:38:40: Initializer:: 'Motion_Exctractor_MEAN' is uninitialized.
+2020-03-27 17:38:40: Initializer:: 'AvgPool1d' is uninitialized.
+2020-03-27 17:38:40: Network:: graph initialized, loading pretrained model: `/work/Viax_Liao/network/pretrained/MFNet2D_ImageNet1k-0000.pth'
+2020-03-27 17:38:40: Initializer:: loading from 2D neural network, filling method: `inflation' ...
+2020-03-27 17:38:41: Initializer:: >> 2 params are unused: ['classifier.weight', 'classifier.bias']
+2020-03-27 17:38:41: Initializer:: >> failed to load: 
+[
+    "conv1.bn.num_batches_tracked",
+    "conv2.B01.conv_i1.bn.num_batches_tracked",
+    "conv2.B01.conv_i2.bn.num_batches_tracked",
+    "conv2.B01.conv_m1.bn.num_batches_tracked",
+    "conv2.B01.conv_m2.bn.num_batches_tracked",
+    "conv2.B01.conv_w1.bn.num_batches_tracked",
+    "conv2.B02.conv_i1.bn.num_batches_tracked",
+    "conv2.B02.conv_i2.bn.num_batches_tracked",
+    "conv2.B02.conv_m1.bn.num_batches_tracked",
+    "conv2.B02.conv_m2.bn.num_batches_tracked",
+    "conv2.B03.conv_i1.bn.num_batches_tracked",
+    "conv2.B03.conv_i2.bn.num_batches_tracked",
+    "conv2.B03.conv_m1.bn.num_batches_tracked",
+    "conv2.B03.conv_m2.bn.num_batches_tracked",
+    "conv3.B01.conv_i1.bn.num_batches_tracked",
+    "conv3.B01.conv_i2.bn.num_batches_tracked",
+    "conv3.B01.conv_m1.bn.num_batches_tracked",
+    "conv3.B01.conv_m2.bn.num_batches_tracked",
+    "conv3.B01.conv_w1.bn.num_batches_tracked",
+    "conv3.B02.conv_i1.bn.num_batches_tracked",
+    "conv3.B02.conv_i2.bn.num_batches_tracked",
+    "conv3.B02.conv_m1.bn.num_batches_tracked",
+    "conv3.B02.conv_m2.bn.num_batches_tracked",
+    "conv3.B03.conv_i1.bn.num_batches_tracked",
+    "conv3.B03.conv_i2.bn.num_batches_tracked",
+    "conv3.B03.conv_m1.bn.num_batches_tracked",
+    "conv3.B03.conv_m2.bn.num_batches_tracked",
+    "conv3.B04.conv_i1.bn.num_batches_tracked",
+    "conv3.B04.conv_i2.bn.num_batches_tracked",
+    "conv3.B04.conv_m1.bn.num_batches_tracked",
+    "conv3.B04.conv_m2.bn.num_batches_tracked",
+    "conv4.B01.conv_i1.bn.num_batches_tracked",
+    "conv4.B01.conv_i2.bn.num_batches_tracked",
+    "conv4.B01.conv_m1.bn.num_batches_tracked",
+    "conv4.B01.conv_m2.bn.num_batches_tracked",
+    "conv4.B01.conv_w1.bn.num_batches_tracked",
+    "conv4.B02.conv_i1.bn.num_batches_tracked",
+    "conv4.B02.conv_i2.bn.num_batches_tracked",
+    "conv4.B02.conv_m1.bn.num_batches_tracked",
+    "conv4.B02.conv_m2.bn.num_batches_tracked",
+    "conv4.B03.conv_i1.bn.num_batches_tracked",
+    "conv4.B03.conv_i2.bn.num_batches_tracked",
+    "conv4.B03.conv_m1.bn.num_batches_tracked",
+    "conv4.B03.conv_m2.bn.num_batches_tracked",
+    "conv4.B04.conv_i1.bn.num_batches_tracked",
+    "conv4.B04.conv_i2.bn.num_batches_tracked",
+    "conv4.B04.conv_m1.bn.num_batches_tracked",
+    "conv4.B04.conv_m2.bn.num_batches_tracked",
+    "conv4.B05.conv_i1.bn.num_batches_tracked",
+    "conv4.B05.conv_i2.bn.num_batches_tracked",
+    "conv4.B05.conv_m1.bn.num_batches_tracked",
+    "conv4.B05.conv_m2.bn.num_batches_tracked",
+    "conv4.B06.conv_i1.bn.num_batches_tracked",
+    "conv4.B06.conv_i2.bn.num_batches_tracked",
+    "conv4.B06.conv_m1.bn.num_batches_tracked",
+    "conv4.B06.conv_m2.bn.num_batches_tracked",
+    "conv5.B01.conv_i1.bn.num_batches_tracked",
+    "conv5.B01.conv_i2.bn.num_batches_tracked",
+    "conv5.B01.conv_m1.bn.num_batches_tracked",
+    "conv5.B01.conv_m2.bn.num_batches_tracked",
+    "conv5.B01.conv_w1.bn.num_batches_tracked",
+    "conv5.B02.conv_i1.bn.num_batches_tracked",
+    "conv5.B02.conv_i2.bn.num_batches_tracked",
+    "conv5.B02.conv_m1.bn.num_batches_tracked",
+    "conv5.B02.conv_m2.bn.num_batches_tracked",
+    "conv5.B03.conv_i1.bn.num_batches_tracked",
+    "conv5.B03.conv_i2.bn.num_batches_tracked",
+    "conv5.B03.conv_m1.bn.num_batches_tracked",
+    "conv5.B03.conv_m2.bn.num_batches_tracked",
+    "motion_exctractor.mh_norm.weight",
+    "motion_exctractor.mh_norm.bias",
+    "motion_exctractor.mh_norm.running_mean",
+    "motion_exctractor.mh_norm.running_var",
+    "motion_exctractor.mh_norm.num_batches_tracked",
+    "motion_exctractor.mh_up.weight",
+    "motion_exctractor.mh_up.bias",
+    "motion_exctractor.mh_up2.weight",
+    "motion_exctractor.mh_up2.bias",
+    "motion_exctractor.mh_up3.weight",
+    "motion_exctractor.mh_up3.bias",
+    "motion_exctractor.mh_conv1.conv.weight",
+    "motion_exctractor.mh_conv1.bn.weight",
+    "motion_exctractor.mh_conv1.bn.bias",
+    "motion_exctractor.mh_conv1.bn.running_mean",
+    "motion_exctractor.mh_conv1.bn.running_var",
+    "motion_exctractor.mh_conv1.bn.num_batches_tracked",
+    "motion_exctractor.mh_conv2.conv.weight",
+    "motion_exctractor.mh_conv2.bn.weight",
+    "motion_exctractor.mh_conv2.bn.bias",
+    "motion_exctractor.mh_conv2.bn.running_mean",
+    "motion_exctractor.mh_conv2.bn.running_var",
+    "motion_exctractor.mh_conv2.bn.num_batches_tracked",
+    "tail.bn.num_batches_tracked",
+    "classifier.weight",
+    "classifier.bias"
+]
+2020-03-27 17:38:41: loading network configs of: CHANGE_AB
+2020-03-27 17:38:41: data:: {'mean': [0.485, 0.456, 0.406], 'std': [0.229, 0.224, 0.225]}
+2020-03-27 17:38:41: VideoIter:: clip_length = 16, interval = [train: 2, val: 2], seed = 101
+2020-03-27 17:38:41: VideoIter:: >> `check_video' is off, `tolerant_corrupted_video' is automatically activated.
+2020-03-27 17:38:41: VideoIter:: found 3570 videos in `./dataset/HMDB51/raw/list_cvt/hmdb51_split1_train.txt'
+2020-03-27 17:38:41: VideoIter:: iterator initialized (phase: 'train', num: 3570)
+2020-03-27 17:38:41: VideoIter:: >> `check_video' is off, `tolerant_corrupted_video' is automatically activated.
+2020-03-27 17:38:41: VideoIter:: found 1530 videos in `./dataset/HMDB51/raw/list_cvt/hmdb51_split1_test.txt'
+2020-03-27 17:38:41: VideoIter:: iterator initialized (phase: 'test', num: 1530)
+2020-03-27 17:38:42: Optimizer:: >> recuding the learning rate of 223 params: ['conv1.conv.weight', 'conv1.bn.weight', 'conv1.bn.bias', 'conv2.B01.conv_i1.bn.weight', 'conv2.B01.conv_i1.bn.bias', 'conv2.B01.conv_i1.conv.weight', ... tion_exctractor.mh_conv2.conv.weight', 'motion_exctractor.mh_conv2.bn.weight', 'motion_exctractor.mh_conv2.bn.bias', 'tail.bn.weight', 'tail.bn.bias']
+2020-03-27 17:38:42: Initializer:: loading model states from: `./network/pretrained/MFNet3D_Kinetics-400_72.8.pth'
+2020-03-27 17:38:43: There are layers in current network not initialized by pretrained
+2020-03-27 17:38:43: >> Failed to load: ['module.motion_exctractor.mh_norm.weight', 'module.motion_exctractor.mh_norm.bias', 'module.motion_exctractor.mh_norm.running_mean', 'module.motion_exctractor.mh_norm.running_var', 'module.motion_exctractor.mh_up.weight', 'module.motion_exctractor.mh_up.bias', 'module.motion_exctractor.mh_up2.weight', 'module.motion_exctractor.mh_up2.bias', 'module.motion_exctractor.mh_up3.weight', 'module.motion_exctractor.mh_up3.bias', 'module.motion_exctractor.mh_conv1.conv.weight', 'module.motion_exctractor.mh_conv1.bn.weight', 'module.motion_exctractor.mh_conv1.bn.bias', 'module.motion_exctractor.mh_conv1.bn.running_mean', 'module.motion_exctractor.mh_conv1.bn.running_var', 'module.motion_exctractor.mh_conv2.conv.weight', 'module.motion_exctractor.mh_conv2.bn.weight', 'module.motion_exctractor.mh_conv2.bn.bias', 'module.motion_exctractor.mh_conv2.bn.running_mean', 'module.motion_exctractor.mh_conv2.bn.running_var', 'module.classifier.weight', 'module.classifier.bias']
+2020-03-27 17:38:43: Iter 0: start with learning rate: 5.00000e-03 (next lr step: 3125)
+2020-03-27 17:38:43: Start epoch 0:
+2020-03-27 17:38:52: Epoch [0]   Batch [0]    Speed   1.8 (+ 1) sample/sec  loss-ce = 4.77163, top1 = 0.00000, top5 = 0.06250  
+2020-03-27 17:42:53: Epoch [0]   Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 3.95734, top1 = 0.04500, top5 = 0.18500  
+2020-03-27 17:46:56: Epoch [0]   Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 3.42745, top1 = 0.18375, top5 = 0.40375  
+2020-03-27 17:51:00: Epoch [0]   Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 2.83702, top1 = 0.36875, top5 = 0.60875  
+2020-03-27 17:54:59: Epoch [0]   Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 2.21222, top1 = 0.51000, top5 = 0.74875  
+2020-03-27 17:56:47: Epoch [0]   time cost: 1084.06 sec (0.30 h)
+2020-03-27 17:56:47: Checkpoint (model & optimizer) saved to: ./exps/models/archive/Viax_Liao_ep-0001.pth
+2020-03-27 17:56:47: Start epoch 1:
+2020-03-27 17:56:52: Epoch [1]   Batch [0]    Speed   3.2 (+14) sample/sec  loss-ce = 1.82609, top1 = 0.68750, top5 = 0.87500  
+2020-03-27 18:00:57: Epoch [1]   Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 1.63168, top1 = 0.58750, top5 = 0.86500  
+2020-03-27 18:04:54: Epoch [1]   Batch [100]  Speed   3.4 (+13) sample/sec  loss-ce = 1.45746, top1 = 0.64375, top5 = 0.89625  
+2020-03-27 18:08:51: Epoch [1]   Batch [150]  Speed   3.4 (+13) sample/sec  loss-ce = 1.40910, top1 = 0.63000, top5 = 0.88125  
+2020-03-27 18:12:54: Epoch [1]   Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 1.28623, top1 = 0.65500, top5 = 0.89500  
+2020-03-27 18:14:42: Epoch [1]   time cost: 1074.58 sec (0.30 h)
+2020-03-27 18:14:42: Start epoch 2:
+2020-03-27 18:14:46: Epoch [2]   Batch [0]    Speed   3.5 (+13) sample/sec  loss-ce = 1.24159, top1 = 0.56250, top5 = 1.00000  
+2020-03-27 18:18:46: Epoch [2]   Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 1.11609, top1 = 0.70500, top5 = 0.91250  
+2020-03-27 18:22:46: Epoch [2]   Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 1.03880, top1 = 0.74250, top5 = 0.92375  
+2020-03-27 18:26:52: Epoch [2]   Batch [150]  Speed   3.2 (+13) sample/sec  loss-ce = 1.07940, top1 = 0.70750, top5 = 0.92125  
+2020-03-27 18:30:55: Epoch [2]   Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 1.07029, top1 = 0.71125, top5 = 0.92375  
+2020-03-27 18:32:43: Epoch [2]   time cost: 1080.93 sec (0.30 h)
+2020-03-27 18:32:43: Start epoch 3:
+2020-03-27 18:32:47: Epoch [3]   Batch [0]    Speed   3.5 (+13) sample/sec  loss-ce = 0.99211, top1 = 0.62500, top5 = 0.93750  
+2020-03-27 18:36:48: Epoch [3]   Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.91753, top1 = 0.74125, top5 = 0.93250  
+2020-03-27 18:40:52: Epoch [3]   Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.90154, top1 = 0.74750, top5 = 0.92875  
+2020-03-27 18:44:51: Epoch [3]   Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.85878, top1 = 0.76750, top5 = 0.94625  
+2020-03-27 18:48:55: Epoch [3]   Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.88325, top1 = 0.75500, top5 = 0.93125  
+2020-03-27 18:50:42: Epoch [3]   time cost: 1079.38 sec (0.30 h)
+2020-03-27 18:50:42: Start evaluating epoch 3:
+2020-03-27 18:55:00: Epoch [3]   Batch [191]  Speed   5.9 (+46) sample/sec  loss-ce = 1.17662, top1 = 0.65752, top5 = 0.91307  
+2020-03-27 18:55:00: Current best epoch found with top5 accuracy 0.91307 at epoch 4, saved
+2020-03-27 18:55:00: Checkpoint (model & optimizer) saved to: ./exps/models/archive/Viax_Liao_ep-0004.pth
+2020-03-27 18:55:01: Checkpoint (model & optimizer) saved to: ./exps/models/archive/Viax_Liao_ep-0004.pth
+2020-03-27 18:55:01: Current best epoch found with top1 accuracy 0.65752 at epoch 4, saved
+2020-03-27 18:55:01: Start epoch 4:
+2020-03-27 18:55:05: Epoch [4]   Batch [0]    Speed   3.5 (+12) sample/sec  loss-ce = 1.01912, top1 = 0.56250, top5 = 0.93750  
+2020-03-27 18:59:04: Epoch [4]   Batch [50]   Speed   3.4 (+13) sample/sec  loss-ce = 0.80034, top1 = 0.79500, top5 = 0.95875  
+2020-03-27 19:03:05: Epoch [4]   Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.76329, top1 = 0.79375, top5 = 0.96250  
+2020-03-27 19:07:09: Epoch [4]   Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.73115, top1 = 0.79375, top5 = 0.96375  
+2020-03-27 19:11:08: Epoch [4]   Batch [200]  Speed   3.4 (+13) sample/sec  loss-ce = 0.79239, top1 = 0.79500, top5 = 0.95125  
+2020-03-27 19:12:56: Epoch [4]   time cost: 1075.02 sec (0.30 h)
+2020-03-27 19:12:56: Start epoch 5:
+2020-03-27 19:13:00: Epoch [5]   Batch [0]    Speed   3.8 (+13) sample/sec  loss-ce = 0.31833, top1 = 0.93750, top5 = 1.00000  
+2020-03-27 19:17:01: Epoch [5]   Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.65359, top1 = 0.83000, top5 = 0.96625  
+2020-03-27 19:21:05: Epoch [5]   Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.75039, top1 = 0.79625, top5 = 0.95750  
+2020-03-27 19:25:06: Epoch [5]   Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.71041, top1 = 0.80625, top5 = 0.96500  
+2020-03-27 19:29:09: Epoch [5]   Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.69099, top1 = 0.81375, top5 = 0.96250  
+2020-03-27 19:31:00: Epoch [5]   time cost: 1084.71 sec (0.30 h)
+2020-03-27 19:31:00: Start epoch 6:
+2020-03-27 19:31:05: Epoch [6]   Batch [0]    Speed   3.6 (+13) sample/sec  loss-ce = 0.59157, top1 = 0.75000, top5 = 0.93750  
+2020-03-27 19:35:06: Epoch [6]   Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.59620, top1 = 0.83875, top5 = 0.98125  
+2020-03-27 19:39:05: Epoch [6]   Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.67277, top1 = 0.82375, top5 = 0.97125  
+2020-03-27 19:43:10: Epoch [6]   Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.65785, top1 = 0.81500, top5 = 0.96375  
+2020-03-27 19:47:11: Epoch [6]   Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.60628, top1 = 0.82750, top5 = 0.96625  
+2020-03-27 19:48:58: Epoch [6]   time cost: 1077.53 sec (0.30 h)
+2020-03-27 19:48:58: Start epoch 7:
+2020-03-27 19:49:02: Epoch [7]   Batch [0]    Speed   3.7 (+13) sample/sec  loss-ce = 0.84438, top1 = 0.68750, top5 = 0.87500  
+2020-03-27 19:53:05: Epoch [7]   Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.56090, top1 = 0.85250, top5 = 0.97625  
+2020-03-27 19:57:15: Epoch [7]   Batch [100]  Speed   3.2 (+14) sample/sec  loss-ce = 0.53952, top1 = 0.85750, top5 = 0.96625  
+2020-03-27 20:01:14: Epoch [7]   Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.57908, top1 = 0.84625, top5 = 0.97000  
+2020-03-27 20:05:18: Epoch [7]   Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.57322, top1 = 0.83125, top5 = 0.97375  
+2020-03-27 20:07:06: Epoch [7]   time cost: 1087.82 sec (0.30 h)
+2020-03-27 20:07:06: Checkpoint (model & optimizer) saved to: ./exps/models/archive/Viax_Liao_ep-0008.pth
+2020-03-27 20:07:06: Start evaluating epoch 7:
+2020-03-27 20:11:22: Epoch [7]   Batch [191]  Speed   6.0 (+49) sample/sec  loss-ce = 1.14652, top1 = 0.67451, top5 = 0.92353  
+2020-03-27 20:11:22: Current best epoch found with top5 accuracy 0.92353 at epoch 8, saved
+2020-03-27 20:11:22: Current best epoch found with top1 accuracy 0.67451 at epoch 8, saved
+2020-03-27 20:11:22: Start epoch 8:
+2020-03-27 20:11:27: Epoch [8]   Batch [0]    Speed   3.0 (+13) sample/sec  loss-ce = 1.08829, top1 = 0.81250, top5 = 0.87500  
+2020-03-27 20:15:29: Epoch [8]   Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.49651, top1 = 0.86625, top5 = 0.97875  
+2020-03-27 20:19:31: Epoch [8]   Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.52016, top1 = 0.87500, top5 = 0.97250  
+2020-03-27 20:23:33: Epoch [8]   Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.50755, top1 = 0.86375, top5 = 0.98000  
+2020-03-27 20:27:34: Epoch [8]   Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.50477, top1 = 0.84500, top5 = 0.98000  
+2020-03-27 20:29:19: Epoch [8]   time cost: 1077.52 sec (0.30 h)
+2020-03-27 20:29:19: Start epoch 9:
+2020-03-27 20:29:24: Epoch [9]   Batch [0]    Speed   3.2 (+13) sample/sec  loss-ce = 0.15641, top1 = 1.00000, top5 = 1.00000  
+2020-03-27 20:33:30: Epoch [9]   Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.46508, top1 = 0.87750, top5 = 0.97875  
+2020-03-27 20:37:34: Epoch [9]   Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.51021, top1 = 0.85625, top5 = 0.97500  
+2020-03-27 20:41:35: Epoch [9]   Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.47228, top1 = 0.87625, top5 = 0.97750  
+2020-03-27 20:45:32: Epoch [9]   Batch [200]  Speed   3.4 (+13) sample/sec  loss-ce = 0.52996, top1 = 0.86375, top5 = 0.97000  
+2020-03-27 20:47:20: Epoch [9]   time cost: 1080.41 sec (0.30 h)
+2020-03-27 20:47:20: Start epoch 10:
+2020-03-27 20:47:24: Epoch [10]  Batch [0]    Speed   3.3 (+13) sample/sec  loss-ce = 0.73120, top1 = 0.75000, top5 = 1.00000  
+2020-03-27 20:51:27: Epoch [10]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.42119, top1 = 0.88250, top5 = 0.98250  
+2020-03-27 20:55:28: Epoch [10]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.45349, top1 = 0.88625, top5 = 0.97375  
+2020-03-27 20:59:29: Epoch [10]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.47847, top1 = 0.87750, top5 = 0.98250  
+2020-03-27 21:03:34: Epoch [10]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.45808, top1 = 0.86875, top5 = 0.97625  
+2020-03-27 21:05:20: Epoch [10]   time cost: 1079.97 sec (0.30 h)
+2020-03-27 21:05:20: Start epoch 11:
+2020-03-27 21:05:24: Epoch [11]  Batch [0]    Speed   3.9 (+12) sample/sec  loss-ce = 0.49266, top1 = 0.93750, top5 = 1.00000  
+2020-03-27 21:09:22: Epoch [11]  Batch [50]   Speed   3.4 (+13) sample/sec  loss-ce = 0.41866, top1 = 0.89125, top5 = 0.98625  
+2020-03-27 21:13:27: Epoch [11]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.37880, top1 = 0.90750, top5 = 0.98750  
+2020-03-27 21:17:28: Epoch [11]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.45081, top1 = 0.87750, top5 = 0.98000  
+2020-03-27 21:21:32: Epoch [11]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.41069, top1 = 0.88625, top5 = 0.98500  
+2020-03-27 21:23:20: Epoch [11]   time cost: 1080.44 sec (0.30 h)
+2020-03-27 21:23:20: Start evaluating epoch 11:
+2020-03-27 21:27:36: Epoch [11]  Batch [191]  Speed   6.0 (+49) sample/sec  loss-ce = 1.17994, top1 = 0.68562, top5 = 0.91699  
+2020-03-27 21:27:36: Checkpoint (model & optimizer) saved to: ./exps/models/archive/Viax_Liao_ep-0012.pth
+2020-03-27 21:27:36: Current best epoch found with top1 accuracy 0.68562 at epoch 12, saved
+2020-03-27 21:27:36: Start epoch 12:
+2020-03-27 21:27:40: Epoch [12]  Batch [0]    Speed   3.6 (+12) sample/sec  loss-ce = 0.19544, top1 = 0.93750, top5 = 1.00000  
+2020-03-27 21:31:44: Epoch [12]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.41678, top1 = 0.88375, top5 = 0.98625  
+2020-03-27 21:35:43: Epoch [12]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.38685, top1 = 0.89500, top5 = 0.98750  
+2020-03-27 21:39:46: Epoch [12]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.41360, top1 = 0.87750, top5 = 0.98250  
+2020-03-27 21:43:52: Epoch [12]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.34961, top1 = 0.90875, top5 = 0.99125  
+2020-03-27 21:45:41: Epoch [12]   time cost: 1084.90 sec (0.30 h)
+2020-03-27 21:45:41: Start epoch 13:
+2020-03-27 21:45:46: Epoch [13]  Batch [0]    Speed   3.4 (+13) sample/sec  loss-ce = 0.15794, top1 = 1.00000, top5 = 1.00000  
+2020-03-27 21:49:50: Epoch [13]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.32184, top1 = 0.91625, top5 = 0.99125  
+2020-03-27 21:53:50: Epoch [13]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.38887, top1 = 0.90250, top5 = 0.98625  
+2020-03-27 21:57:54: Epoch [13]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.37071, top1 = 0.90625, top5 = 0.98750  
+2020-03-27 22:01:57: Epoch [13]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.39004, top1 = 0.88875, top5 = 0.98000  
+2020-03-27 22:03:00: Iter: 3125, change learning rate to 5.00000e-04 for step [3125:6250)
+2020-03-27 22:03:44: Epoch [13]   time cost: 1083.18 sec (0.30 h)
+2020-03-27 22:03:44: Start epoch 14:
+2020-03-27 22:03:48: Epoch [14]  Batch [0]    Speed   3.6 (+13) sample/sec  loss-ce = 0.58417, top1 = 0.81250, top5 = 1.00000  
+2020-03-27 22:07:53: Epoch [14]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.31060, top1 = 0.91625, top5 = 0.99250  
+2020-03-27 22:11:54: Epoch [14]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.34710, top1 = 0.91625, top5 = 0.98500  
+2020-03-27 22:15:55: Epoch [14]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.31828, top1 = 0.91875, top5 = 0.98625  
+2020-03-27 22:19:56: Epoch [14]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.32197, top1 = 0.91625, top5 = 0.98750  
+2020-03-27 22:21:44: Epoch [14]   time cost: 1079.67 sec (0.30 h)
+2020-03-27 22:21:44: Start epoch 15:
+2020-03-27 22:21:49: Epoch [15]  Batch [0]    Speed   3.1 (+14) sample/sec  loss-ce = 0.42691, top1 = 0.81250, top5 = 1.00000  
+2020-03-27 22:25:51: Epoch [15]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.30563, top1 = 0.92750, top5 = 0.99125  
+2020-03-27 22:29:53: Epoch [15]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.32268, top1 = 0.91750, top5 = 0.98750  
+2020-03-27 22:33:57: Epoch [15]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.35050, top1 = 0.92125, top5 = 0.98125  
+2020-03-27 22:37:57: Epoch [15]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.29307, top1 = 0.93250, top5 = 0.99375  
+2020-03-27 22:39:46: Epoch [15]   time cost: 1081.90 sec (0.30 h)
+2020-03-27 22:39:46: Checkpoint (model & optimizer) saved to: ./exps/models/archive/Viax_Liao_ep-0016.pth
+2020-03-27 22:39:46: Start evaluating epoch 15:
+2020-03-27 22:44:01: Epoch [15]  Batch [191]  Speed   6.0 (+49) sample/sec  loss-ce = 1.21127, top1 = 0.67908, top5 = 0.91307  
+2020-03-27 22:44:01: Start epoch 16:
+2020-03-27 22:44:06: Epoch [16]  Batch [0]    Speed   3.2 (+13) sample/sec  loss-ce = 0.15918, top1 = 1.00000, top5 = 1.00000  
+2020-03-27 22:48:08: Epoch [16]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.27345, top1 = 0.93875, top5 = 0.99125  
+2020-03-27 22:52:08: Epoch [16]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.34205, top1 = 0.91750, top5 = 0.98875  
+2020-03-27 22:56:11: Epoch [16]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.27778, top1 = 0.93125, top5 = 0.99500  
+2020-03-27 23:00:10: Epoch [16]  Batch [200]  Speed   3.4 (+13) sample/sec  loss-ce = 0.32547, top1 = 0.92500, top5 = 0.99125  
+2020-03-27 23:01:57: Epoch [16]   time cost: 1075.42 sec (0.30 h)
+2020-03-27 23:01:57: Start epoch 17:
+2020-03-27 23:02:02: Epoch [17]  Batch [0]    Speed   3.2 (+14) sample/sec  loss-ce = 0.17396, top1 = 0.93750, top5 = 1.00000  
+2020-03-27 23:06:10: Epoch [17]  Batch [50]   Speed   3.2 (+13) sample/sec  loss-ce = 0.30589, top1 = 0.93250, top5 = 0.99000  
+2020-03-27 23:10:13: Epoch [17]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.27168, top1 = 0.93875, top5 = 0.99000  
+2020-03-27 23:14:14: Epoch [17]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.32290, top1 = 0.92375, top5 = 0.99375  
+2020-03-27 23:18:15: Epoch [17]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.29288, top1 = 0.93000, top5 = 0.99375  
+2020-03-27 23:20:03: Epoch [17]   time cost: 1086.20 sec (0.30 h)
+2020-03-27 23:20:03: Start epoch 18:
+2020-03-27 23:20:08: Epoch [18]  Batch [0]    Speed   3.4 (+13) sample/sec  loss-ce = 0.27768, top1 = 0.93750, top5 = 1.00000  
+2020-03-27 23:24:09: Epoch [18]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.29601, top1 = 0.93250, top5 = 0.98875  
+2020-03-27 23:28:11: Epoch [18]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.26621, top1 = 0.94250, top5 = 0.99500  
+2020-03-27 23:32:13: Epoch [18]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.31299, top1 = 0.91375, top5 = 0.98750  
+2020-03-27 23:36:14: Epoch [18]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.33710, top1 = 0.92500, top5 = 0.99000  
+2020-03-27 23:38:02: Epoch [18]   time cost: 1078.41 sec (0.30 h)
+2020-03-27 23:38:02: Start epoch 19:
+2020-03-27 23:38:06: Epoch [19]  Batch [0]    Speed   3.5 (+13) sample/sec  loss-ce = 0.16396, top1 = 1.00000, top5 = 1.00000  
+2020-03-27 23:42:03: Epoch [19]  Batch [50]   Speed   3.4 (+13) sample/sec  loss-ce = 0.29843, top1 = 0.93375, top5 = 0.98625  
+2020-03-27 23:46:05: Epoch [19]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.33507, top1 = 0.91125, top5 = 0.99000  
+2020-03-27 23:50:03: Epoch [19]  Batch [150]  Speed   3.4 (+13) sample/sec  loss-ce = 0.27817, top1 = 0.93000, top5 = 0.99375  
+2020-03-27 23:54:04: Epoch [19]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.32689, top1 = 0.92250, top5 = 0.99125  
+2020-03-27 23:55:52: Epoch [19]   time cost: 1070.46 sec (0.30 h)
+2020-03-27 23:55:52: Start evaluating epoch 19:
+2020-03-28 00:00:09: Epoch [19]  Batch [191]  Speed   6.0 (+49) sample/sec  loss-ce = 1.22878, top1 = 0.66601, top5 = 0.90980  
+2020-03-28 00:00:09: Start epoch 20:
+2020-03-28 00:00:13: Epoch [20]  Batch [0]    Speed   3.4 (+13) sample/sec  loss-ce = 0.18549, top1 = 1.00000, top5 = 1.00000  
+2020-03-28 00:04:14: Epoch [20]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.26876, top1 = 0.94625, top5 = 0.99375  
+2020-03-28 00:08:15: Epoch [20]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.33686, top1 = 0.92125, top5 = 0.98750  
+2020-03-28 00:12:17: Epoch [20]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.25862, top1 = 0.94000, top5 = 0.99500  
+2020-03-28 00:16:20: Epoch [20]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.29242, top1 = 0.92500, top5 = 0.99000  
+2020-03-28 00:18:10: Epoch [20]   time cost: 1081.79 sec (0.30 h)
+2020-03-28 00:18:10: Start epoch 21:
+2020-03-28 00:18:15: Epoch [21]  Batch [0]    Speed   3.3 (+13) sample/sec  loss-ce = 0.38421, top1 = 0.93750, top5 = 0.93750  
+2020-03-28 00:22:16: Epoch [21]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.27219, top1 = 0.94375, top5 = 0.99625  
+2020-03-28 00:26:14: Epoch [21]  Batch [100]  Speed   3.4 (+13) sample/sec  loss-ce = 0.24955, top1 = 0.94000, top5 = 0.99750  
+2020-03-28 00:30:17: Epoch [21]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.27479, top1 = 0.93875, top5 = 0.99500  
+2020-03-28 00:34:18: Epoch [21]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.33153, top1 = 0.92625, top5 = 0.99125  
+2020-03-28 00:36:07: Epoch [21]   time cost: 1076.45 sec (0.30 h)
+2020-03-28 00:36:07: Start epoch 22:
+2020-03-28 00:36:11: Epoch [22]  Batch [0]    Speed   3.5 (+13) sample/sec  loss-ce = 0.07705, top1 = 1.00000, top5 = 1.00000  
+2020-03-28 00:40:13: Epoch [22]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.24794, top1 = 0.95250, top5 = 0.99375  
+2020-03-28 00:44:17: Epoch [22]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.29500, top1 = 0.93375, top5 = 0.99125  
+2020-03-28 00:48:19: Epoch [22]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.26876, top1 = 0.94000, top5 = 0.99250  
+2020-03-28 00:52:18: Epoch [22]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.30460, top1 = 0.93125, top5 = 0.98750  
+2020-03-28 00:54:06: Epoch [22]   time cost: 1078.88 sec (0.30 h)
+2020-03-28 00:54:06: Start epoch 23:
+2020-03-28 00:54:10: Epoch [23]  Batch [0]    Speed   3.5 (+13) sample/sec  loss-ce = 0.12249, top1 = 1.00000, top5 = 1.00000  
+2020-03-28 00:58:13: Epoch [23]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.29292, top1 = 0.92375, top5 = 0.98875  
+2020-03-28 01:02:15: Epoch [23]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.25813, top1 = 0.94750, top5 = 0.99250  
+2020-03-28 01:06:14: Epoch [23]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.26496, top1 = 0.93250, top5 = 0.98875  
+2020-03-28 01:10:17: Epoch [23]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.25910, top1 = 0.93625, top5 = 0.99875  
+2020-03-28 01:12:06: Epoch [23]   time cost: 1080.32 sec (0.30 h)
+2020-03-28 01:12:06: Checkpoint (model & optimizer) saved to: ./exps/models/archive/Viax_Liao_ep-0024.pth
+2020-03-28 01:12:06: Start evaluating epoch 23:
+2020-03-28 01:16:22: Epoch [23]  Batch [191]  Speed   6.0 (+49) sample/sec  loss-ce = 1.25740, top1 = 0.67124, top5 = 0.91569  
+2020-03-28 01:16:22: Start epoch 24:
+2020-03-28 01:16:27: Epoch [24]  Batch [0]    Speed   3.6 (+12) sample/sec  loss-ce = 0.20468, top1 = 0.93750, top5 = 1.00000  
+2020-03-28 01:20:27: Epoch [24]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.24635, top1 = 0.94000, top5 = 0.99750  
+2020-03-28 01:24:27: Epoch [24]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.25009, top1 = 0.94125, top5 = 0.99625  
+2020-03-28 01:28:27: Epoch [24]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.27488, top1 = 0.92625, top5 = 0.99625  
+2020-03-28 01:32:34: Epoch [24]  Batch [200]  Speed   3.2 (+13) sample/sec  loss-ce = 0.25967, top1 = 0.94250, top5 = 0.99500  
+2020-03-28 01:34:19: Epoch [24]   time cost: 1076.61 sec (0.30 h)
+2020-03-28 01:34:19: Start epoch 25:
+2020-03-28 01:34:24: Epoch [25]  Batch [0]    Speed   3.1 (+13) sample/sec  loss-ce = 0.15105, top1 = 1.00000, top5 = 1.00000  
+2020-03-28 01:38:27: Epoch [25]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.29813, top1 = 0.92625, top5 = 0.99000  
+2020-03-28 01:42:33: Epoch [25]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.28755, top1 = 0.93000, top5 = 0.99000  
+2020-03-28 01:46:34: Epoch [25]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.25985, top1 = 0.94000, top5 = 0.99375  
+2020-03-28 01:50:37: Epoch [25]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.28385, top1 = 0.94000, top5 = 0.99125  
+2020-03-28 01:52:24: Epoch [25]   time cost: 1085.07 sec (0.30 h)
+2020-03-28 01:52:24: Start epoch 26:
+2020-03-28 01:52:29: Epoch [26]  Batch [0]    Speed   3.6 (+13) sample/sec  loss-ce = 0.21448, top1 = 0.93750, top5 = 1.00000  
+2020-03-28 01:56:28: Epoch [26]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.26162, top1 = 0.94375, top5 = 0.98875  
+2020-03-28 02:00:28: Epoch [26]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.22133, top1 = 0.95250, top5 = 0.99625  
+2020-03-28 02:04:28: Epoch [26]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.30166, top1 = 0.93625, top5 = 0.99125  
+2020-03-28 02:08:31: Epoch [26]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.25551, top1 = 0.93875, top5 = 0.99125  
+2020-03-28 02:10:19: Epoch [26]   time cost: 1074.87 sec (0.30 h)
+2020-03-28 02:10:19: Start epoch 27:
+2020-03-28 02:10:24: Epoch [27]  Batch [0]    Speed   3.0 (+14) sample/sec  loss-ce = 0.14722, top1 = 0.93750, top5 = 1.00000  
+2020-03-28 02:14:27: Epoch [27]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.23895, top1 = 0.95375, top5 = 0.99250  
+2020-03-28 02:18:28: Epoch [27]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.27311, top1 = 0.93375, top5 = 0.98875  
+2020-03-28 02:22:33: Epoch [27]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.23754, top1 = 0.95375, top5 = 0.99375  
+2020-03-28 02:26:35: Epoch [27]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.29272, top1 = 0.93250, top5 = 0.99250  
+2020-03-28 02:26:44: Iter: 6250, change learning rate to 5.00000e-05 for step [6250:9375)
+2020-03-28 02:28:22: Epoch [27]   time cost: 1083.18 sec (0.30 h)
+2020-03-28 02:28:22: Start evaluating epoch 27:
+2020-03-28 02:32:39: Epoch [27]  Batch [191]  Speed   6.0 (+49) sample/sec  loss-ce = 1.24474, top1 = 0.66536, top5 = 0.91176  
+2020-03-28 02:32:39: Start epoch 28:
+2020-03-28 02:32:43: Epoch [28]  Batch [0]    Speed   3.5 (+12) sample/sec  loss-ce = 0.32904, top1 = 0.93750, top5 = 1.00000  
+2020-03-28 02:36:44: Epoch [28]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.24015, top1 = 0.95000, top5 = 0.99625  
+2020-03-28 02:40:41: Epoch [28]  Batch [100]  Speed   3.4 (+13) sample/sec  loss-ce = 0.26293, top1 = 0.93750, top5 = 0.99750  
+2020-03-28 02:44:42: Epoch [28]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.26523, top1 = 0.93250, top5 = 0.99125  
+2020-03-28 02:48:46: Epoch [28]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.25716, top1 = 0.93375, top5 = 0.99625  
+2020-03-28 02:50:34: Epoch [28]   time cost: 1075.01 sec (0.30 h)
+2020-03-28 02:50:34: Start epoch 29:
+2020-03-28 02:50:39: Epoch [29]  Batch [0]    Speed   3.1 (+14) sample/sec  loss-ce = 0.33796, top1 = 1.00000, top5 = 1.00000  
+2020-03-28 02:54:40: Epoch [29]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.25041, top1 = 0.94375, top5 = 0.99500  
+2020-03-28 02:58:38: Epoch [29]  Batch [100]  Speed   3.4 (+13) sample/sec  loss-ce = 0.26988, top1 = 0.93875, top5 = 0.99250  
+2020-03-28 03:02:36: Epoch [29]  Batch [150]  Speed   3.4 (+13) sample/sec  loss-ce = 0.26096, top1 = 0.93750, top5 = 0.99500  
+2020-03-28 03:06:40: Epoch [29]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.29802, top1 = 0.93125, top5 = 0.98875  
+2020-03-28 03:08:26: Epoch [29]   time cost: 1072.57 sec (0.30 h)
+2020-03-28 03:08:26: Start epoch 30:
+2020-03-28 03:08:31: Epoch [30]  Batch [0]    Speed   3.6 (+13) sample/sec  loss-ce = 0.31121, top1 = 0.87500, top5 = 1.00000  
+2020-03-28 03:12:33: Epoch [30]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.25829, top1 = 0.94375, top5 = 0.99500  
+2020-03-28 03:16:34: Epoch [30]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.27771, top1 = 0.92250, top5 = 0.99125  
+2020-03-28 03:20:36: Epoch [30]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.24755, top1 = 0.93625, top5 = 0.99250  
+2020-03-28 03:24:41: Epoch [30]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.27692, top1 = 0.93750, top5 = 0.99125  
+2020-03-28 03:26:31: Epoch [30]   time cost: 1084.67 sec (0.30 h)
+2020-03-28 03:26:31: Start epoch 31:
+2020-03-28 03:26:35: Epoch [31]  Batch [0]    Speed   3.6 (+13) sample/sec  loss-ce = 0.18991, top1 = 0.93750, top5 = 1.00000  
+2020-03-28 03:30:39: Epoch [31]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.28216, top1 = 0.93375, top5 = 0.99500  
+2020-03-28 03:34:43: Epoch [31]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.26548, top1 = 0.94500, top5 = 0.99500  
+2020-03-28 03:38:46: Epoch [31]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.25145, top1 = 0.94125, top5 = 0.99375  
+2020-03-28 03:42:45: Epoch [31]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.22857, top1 = 0.95000, top5 = 0.99500  
+2020-03-28 03:44:35: Epoch [31]   time cost: 1083.99 sec (0.30 h)
+2020-03-28 03:44:35: Checkpoint (model & optimizer) saved to: ./exps/models/archive/Viax_Liao_ep-0032.pth
+2020-03-28 03:44:35: Start evaluating epoch 31:
+2020-03-28 03:48:51: Epoch [31]  Batch [191]  Speed   6.0 (+49) sample/sec  loss-ce = 1.23401, top1 = 0.67190, top5 = 0.91046  
+2020-03-28 03:48:51: Start epoch 32:
+2020-03-28 03:48:55: Epoch [32]  Batch [0]    Speed   3.4 (+12) sample/sec  loss-ce = 0.35901, top1 = 0.87500, top5 = 1.00000  
+2020-03-28 03:52:51: Epoch [32]  Batch [50]   Speed   3.4 (+13) sample/sec  loss-ce = 0.26836, top1 = 0.93375, top5 = 0.99000  
+2020-03-28 03:56:48: Epoch [32]  Batch [100]  Speed   3.4 (+13) sample/sec  loss-ce = 0.24917, top1 = 0.95000, top5 = 0.99625  
+2020-03-28 04:00:53: Epoch [32]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.25503, top1 = 0.95250, top5 = 0.99125  
+2020-03-28 04:04:54: Epoch [32]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.28002, top1 = 0.94125, top5 = 0.99000  
+2020-03-28 04:06:44: Epoch [32]   time cost: 1072.70 sec (0.30 h)
+2020-03-28 04:06:44: Start epoch 33:
+2020-03-28 04:06:48: Epoch [33]  Batch [0]    Speed   3.4 (+13) sample/sec  loss-ce = 0.10591, top1 = 1.00000, top5 = 1.00000  
+2020-03-28 04:10:50: Epoch [33]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.26734, top1 = 0.93875, top5 = 0.98875  
+2020-03-28 04:14:51: Epoch [33]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.23698, top1 = 0.94625, top5 = 0.99625  
+2020-03-28 04:18:54: Epoch [33]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.26028, top1 = 0.94250, top5 = 0.99125  
+2020-03-28 04:22:58: Epoch [33]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.27204, top1 = 0.93125, top5 = 0.98750  
+2020-03-28 04:24:44: Epoch [33]   time cost: 1080.35 sec (0.30 h)
+2020-03-28 04:24:44: Start epoch 34:
+2020-03-28 04:24:49: Epoch [34]  Batch [0]    Speed   3.4 (+13) sample/sec  loss-ce = 0.08719, top1 = 1.00000, top5 = 1.00000  
+2020-03-28 04:28:53: Epoch [34]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.25677, top1 = 0.94875, top5 = 0.99000  
+2020-03-28 04:32:53: Epoch [34]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.26995, top1 = 0.93500, top5 = 0.99500  
+2020-03-28 04:36:54: Epoch [34]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.25363, top1 = 0.93875, top5 = 0.99750  
+2020-03-28 04:40:54: Epoch [34]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.23438, top1 = 0.94625, top5 = 0.99500  
+2020-03-28 04:42:42: Epoch [34]   time cost: 1077.92 sec (0.30 h)
+2020-03-28 04:42:42: Start epoch 35:
+2020-03-28 04:42:48: Epoch [35]  Batch [0]    Speed   2.7 (+14) sample/sec  loss-ce = 0.11265, top1 = 1.00000, top5 = 1.00000  
+2020-03-28 04:46:53: Epoch [35]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.25316, top1 = 0.93250, top5 = 0.99500  
+2020-03-28 04:50:55: Epoch [35]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.30254, top1 = 0.92125, top5 = 0.99250  
+2020-03-28 04:54:54: Epoch [35]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.27843, top1 = 0.93375, top5 = 0.99125  
+2020-03-28 04:58:55: Epoch [35]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.26712, top1 = 0.94000, top5 = 0.99500  
+2020-03-28 05:00:44: Epoch [35]   time cost: 1082.07 sec (0.30 h)
+2020-03-28 05:00:44: Start evaluating epoch 35:
+2020-03-28 05:05:01: Epoch [35]  Batch [191]  Speed   6.0 (+49) sample/sec  loss-ce = 1.23926, top1 = 0.67451, top5 = 0.91307  
+2020-03-28 05:05:01: Start epoch 36:
+2020-03-28 05:05:05: Epoch [36]  Batch [0]    Speed   3.4 (+13) sample/sec  loss-ce = 0.14313, top1 = 0.93750, top5 = 1.00000  
+2020-03-28 05:09:12: Epoch [36]  Batch [50]   Speed   3.2 (+13) sample/sec  loss-ce = 0.25937, top1 = 0.93250, top5 = 0.99625  
+2020-03-28 05:13:13: Epoch [36]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.25640, top1 = 0.93500, top5 = 0.99625  
+2020-03-28 05:17:14: Epoch [36]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.28966, top1 = 0.93375, top5 = 0.99125  
+2020-03-28 05:21:22: Epoch [36]  Batch [200]  Speed   3.2 (+13) sample/sec  loss-ce = 0.27854, top1 = 0.93625, top5 = 0.99500  
+2020-03-28 05:23:07: Epoch [36]   time cost: 1086.94 sec (0.30 h)
+2020-03-28 05:23:07: Start epoch 37:
+2020-03-28 05:23:12: Epoch [37]  Batch [0]    Speed   3.3 (+13) sample/sec  loss-ce = 0.20038, top1 = 0.93750, top5 = 1.00000  
+2020-03-28 05:27:15: Epoch [37]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.22010, top1 = 0.94625, top5 = 0.99625  
+2020-03-28 05:31:15: Epoch [37]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.27033, top1 = 0.93000, top5 = 0.99250  
+2020-03-28 05:35:17: Epoch [37]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.26852, top1 = 0.93750, top5 = 0.99625  
+2020-03-28 05:39:21: Epoch [37]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.26878, top1 = 0.94500, top5 = 0.99125  
+2020-03-28 05:41:11: Epoch [37]   time cost: 1083.25 sec (0.30 h)
+2020-03-28 05:41:11: Start epoch 38:
+2020-03-28 05:41:15: Epoch [38]  Batch [0]    Speed   3.8 (+13) sample/sec  loss-ce = 0.17368, top1 = 1.00000, top5 = 1.00000  
+2020-03-28 05:45:19: Epoch [38]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.26087, top1 = 0.93750, top5 = 0.99625  
+2020-03-28 05:49:24: Epoch [38]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.22513, top1 = 0.95250, top5 = 0.99375  
+2020-03-28 05:53:23: Epoch [38]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.30507, top1 = 0.92625, top5 = 0.99250  
+2020-03-28 05:57:24: Epoch [38]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.24413, top1 = 0.94750, top5 = 0.99125  
+2020-03-28 05:59:10: Epoch [38]   time cost: 1079.76 sec (0.30 h)
+2020-03-28 05:59:10: Start epoch 39:
+2020-03-28 05:59:15: Epoch [39]  Batch [0]    Speed   3.9 (+13) sample/sec  loss-ce = 0.03223, top1 = 1.00000, top5 = 1.00000  
+2020-03-28 06:03:16: Epoch [39]  Batch [50]   Speed   3.3 (+13) sample/sec  loss-ce = 0.25956, top1 = 0.94125, top5 = 0.99250  
+2020-03-28 06:07:22: Epoch [39]  Batch [100]  Speed   3.3 (+13) sample/sec  loss-ce = 0.24667, top1 = 0.94125, top5 = 0.99500  
+2020-03-28 06:11:23: Epoch [39]  Batch [150]  Speed   3.3 (+13) sample/sec  loss-ce = 0.26667, top1 = 0.93375, top5 = 0.99625  
+2020-03-28 06:15:24: Epoch [39]  Batch [200]  Speed   3.3 (+13) sample/sec  loss-ce = 0.27453, top1 = 0.93250, top5 = 0.99375  
+2020-03-28 06:17:14: Epoch [39]   time cost: 1084.01 sec (0.30 h)
+2020-03-28 06:17:15: Checkpoint (model & optimizer) saved to: ./exps/models/archive/Viax_Liao_ep-0040.pth
+2020-03-28 06:17:15: Start evaluating epoch 39:
+2020-03-28 06:21:32: Epoch [39]  Batch [191]  Speed   6.0 (+49) sample/sec  loss-ce = 1.24062, top1 = 0.67712, top5 = 0.91569  
+2020-03-28 06:21:32: Optimization done!
